@@ -10,7 +10,7 @@ public class MouseFollow : MonoBehaviour
     private Vector2 _screenBounds;
     [SerializeField] private GameObject _mouseGO;
 
-    private float _maxWait = 3f;
+    private float _maxWait = 2f;
     private float _swapTime = 0.3f;
     private float _seconds = 0f;
     private float _maxSeconds = 0f;
@@ -108,5 +108,10 @@ public class MouseFollow : MonoBehaviour
             _currentColor = Color.white;
 
         }
+    }
+
+    public bool WasHit
+    {
+        get { return _wasHit; }
     }
 }

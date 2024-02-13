@@ -36,7 +36,12 @@ public class VirtusBehaviour : MonoBehaviour
     {
         if(collision.collider.tag == "Friendly")
         {
-            Kill();
+            MouseFollow mouse = collision.gameObject.GetComponent<MouseFollow>();
+            if (mouse != null && !mouse.WasHit)
+            {
+                Kill();
+            }
+            
         }
     }
 
