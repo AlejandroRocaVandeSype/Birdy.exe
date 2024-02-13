@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
 
     private SpawnManager _spawnManager = null;
+    private VirusManager _virusManager = null;
 
     public enum GameStage { Menu, FirstScene, GamePlay }
     private GameStage _gameStage;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
         }
 
         _spawnManager = GetComponent<SpawnManager>();
+        _virusManager = GetComponent<VirusManager>();
         _gameStage = GameStage.GamePlay;
     }
 
@@ -68,5 +70,10 @@ public class GameManager : MonoBehaviour
     {
         get { return _spawnManager; }
     }
-  
+
+    public VirusManager VirusManager
+    {
+        get { return _virusManager; }
+    }
+
 }

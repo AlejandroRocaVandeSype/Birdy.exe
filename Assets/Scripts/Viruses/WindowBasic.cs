@@ -5,8 +5,14 @@ using UnityEngine.EventSystems;
 
 public class WindowBasic : MonoBehaviour
 {
-      
-      
-        
+    [SerializeField] protected GameObject _base;
+    [SerializeField] protected GameObject _closeButton;
+    
+    public void CloseWindow()
+    {
+        Destroy(gameObject);
+
+    }
+
 
 }
