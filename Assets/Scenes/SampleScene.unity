@@ -903,11 +903,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
   m_PrefabInstance: {fileID: 1373343737}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1485019166 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 961808022390133130, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-  m_PrefabInstance: {fileID: 4231022804447627985}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1526090085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1312,14 +1307,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6320812175594416718, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: _mouseGO
-      value: 
-      objectReference: {fileID: 1485019166}
-    - target: {fileID: 6320812175594416718, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: _mouseSprite
-      value: 
-      objectReference: {fileID: 1485019166}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
 --- !u!1001 &4968391517018801887
