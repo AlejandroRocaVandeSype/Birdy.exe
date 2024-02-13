@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class VirtusBehaviour : MonoBehaviour
 {
 
-    [SerializeField] private Transform _target;
+    private Transform _target;
 
     private NavMeshAgent _agent;
 
@@ -18,11 +18,34 @@ public class VirtusBehaviour : MonoBehaviour
         _agent.updateRotation = false;
         
         _agent.updateUpAxis = false;
+
+        _target = FindObjectOfType<MouseFollow>().gameObject.transform;
     }
+
+   
 
     // Update is called once per frame
     void Update()
     {
         _agent.SetDestination(_target.position);
+    }
+
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Friendly")
+        {
+            Kill();
+        }
+    }
+
+
+    private void Kill()
+    {
+        Destroy(gameObject);
+        GameManager.Instance.SpawnManager.SpawnNewWave();
+
     }
 }
