@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_CRT_Screen
+  m_Name: M_CRT_NoAlpha
   m_Shader: {fileID: -6465566751694194690, guid: a8e3b5556cba1a34888a231642f71ed9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Boolean_ecc6fe39041844f0a3db8e44c487a305: 0
+    - Boolean_ecc6fe39041844f0a3db8e44c487a305: 1
     - Vector1_014c11f922b842df97a893b0123251e7: 81.49
     - Vector1_063a96ef0ccf48a59e2587c2977c0c73: 0.35
     - Vector1_2ad6c38cf26a49c8b26fc7e0f28c6038: 0.1
