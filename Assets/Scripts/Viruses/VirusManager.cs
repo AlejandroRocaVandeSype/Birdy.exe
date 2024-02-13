@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class VirusManager : MonoBehaviour
 {
-    private enum VirusStage { ErrorFase, ErrorFase2, Fase1, Fase2, FinalFase};
+    private enum VirusStage { StartVirus, ErrorFase, ErrorFase2, Fase1, Fase2, FinalFase};
     private VirusStage _stage;
 
     [SerializeField] private GameObject _windowErrorTemplate = null;
@@ -25,10 +27,26 @@ public class VirusManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(GameManager.Instance.gameStage == GameManager.GameStage.Start)
+        {
+            // Pop Up a single window error in the middle of the screen
+            Instantiate(_windowErrorTemplate, _windowPositions[19].transform.localPosition, _windowPositions[19].transform.rotation);
+            GameManager.Instance.gameStage = GameManager.GameStage.Wait;
+        }
+        else if(GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
+        {
+            VirusUpdate();
+        }
+        
+    }
+
+    public void VirusUpdate()
+    {
         switch (_stage)
         {
             case VirusStage.ErrorFase:
-                    WindowsErrorFase();
+                WindowsErrorFase();
                 break;
 
             case VirusStage.ErrorFase2:
@@ -36,9 +54,6 @@ public class VirusManager : MonoBehaviour
                     WindowsErrorFase2();
                     break;
                 }
-            
-
-
         }
     }
 
@@ -56,7 +71,7 @@ public class VirusManager : MonoBehaviour
             if (_errorWindowsCount >= MAX_ERRORS)
             {
                 _stage = VirusStage.ErrorFase2;
-                _maxErrorSeconds = 5f; 
+                _maxErrorSeconds = 2f; 
             }                                             
         }
     }
@@ -78,7 +93,7 @@ public class VirusManager : MonoBehaviour
     {
        
         int index = Random.Range(0, _windowPositions.Count - 1);
-        Instantiate(windowTemplate, _windowPositions[index].transform);
+        Instantiate(windowTemplate, _windowPositions[index].transform.localPosition, _windowPositions[index].transform.rotation);
         _errorWindowsCount++;
     }
 

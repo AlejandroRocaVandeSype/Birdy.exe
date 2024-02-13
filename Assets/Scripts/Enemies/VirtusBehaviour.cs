@@ -26,7 +26,12 @@ public class VirtusBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _agent.SetDestination(_target.position);
+
+        if(GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
+        {
+            _agent.SetDestination(_target.position);
+        }
+        
     }
 
 

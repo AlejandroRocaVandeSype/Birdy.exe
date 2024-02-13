@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     private SpawnManager _spawnManager = null;
     private VirusManager _virusManager = null;
 
-    public enum GameStage { Menu, FirstScene, GamePlay }
+    public enum GameStage { Start, Gameplay, Wait }
     private GameStage _gameStage;
 
     // Start is called before the first frame update
@@ -62,8 +62,9 @@ public class GameManager : MonoBehaviour
 
         _spawnManager = GetComponent<SpawnManager>();
         _virusManager = GetComponent<VirusManager>();
-        _gameStage = GameStage.GamePlay;
+        _gameStage = GameStage.Start;
     }
+
 
 
     public SpawnManager SpawnManager
@@ -74,6 +75,13 @@ public class GameManager : MonoBehaviour
     public VirusManager VirusManager
     {
         get { return _virusManager; }
+    }
+
+
+    public GameStage gameStage
+    {
+        get { return _gameStage; }
+        set { _gameStage = value; }
     }
 
 }

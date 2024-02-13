@@ -8,7 +8,7 @@ public class WindowBasic : MonoBehaviour
     [SerializeField] protected GameObject _base;
     [SerializeField] protected GameObject _closeButton;
     
-    public void CloseWindow()
+    protected virtual void CloseWindow()
     {
         Destroy(gameObject);
 

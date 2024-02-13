@@ -15,4 +15,12 @@ public class WindowError : WindowBasic
     {
         
     }
+
+    // This window only appears once. When it is closed the game actually starts
+    protected override void CloseWindow()
+    {
+        Destroy(gameObject);
+        GameManager.Instance.gameStage = GameManager.GameStage.Gameplay;
+
+    }
 }
