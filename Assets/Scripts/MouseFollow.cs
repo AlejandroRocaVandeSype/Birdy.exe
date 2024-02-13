@@ -14,6 +14,7 @@ public class MouseFollow : MonoBehaviour
     private float _swapTime = 0.3f;
     private float _seconds = 0f;
     private float _maxSeconds = 0f;
+    private const float BORDERS = 0.18f;
     private Color _currentColor = Color.red;
 
     private bool _wasHit = false;
@@ -79,22 +80,22 @@ public class MouseFollow : MonoBehaviour
     private Vector3 BoundaryCheck(Vector3 position)
     {
 
-        if (position.x > _screenBounds.x - 0.5f)
+        if (position.x > _screenBounds.x - BORDERS)
         {
-            position.x = _screenBounds.x - 0.5f;
+            position.x = _screenBounds.x - BORDERS;
         }
-        else if (position.x < 0 - _screenBounds.x + 0.5f)
+        else if (position.x < 0 - _screenBounds.x + BORDERS)
         {
-            position.x = 0 - _screenBounds.x + 0.5f;
+            position.x = 0 - _screenBounds.x + BORDERS;
         }
 
-        if (position.y > _screenBounds.y - 0.5f)
+        if (position.y > _screenBounds.y - BORDERS)
         {
-            position.y = _screenBounds.y - 0.5f;
+            position.y = _screenBounds.y - BORDERS;
         }
-        else if (position.y < 0 - _screenBounds.y + 0.5f)
+        else if (position.y < 0 - _screenBounds.y + BORDERS)
         {
-            position.y = 0 - _screenBounds.y + 0.5f;
+            position.y = 0 - _screenBounds.y + BORDERS;
         }
         return position;
     }

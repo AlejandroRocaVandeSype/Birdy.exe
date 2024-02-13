@@ -6,14 +6,13 @@ public class SpawnManager : MonoBehaviour
 {
 
     private List<SpawnPoint> _spawnPoints = new List<SpawnPoint>();
-
     private bool _hasToSpawn = true;
     private int _amountToSpawn = 1;             // Spawn only one enemy at start
+  
    
     public void RegisterSpawnPoint(SpawnPoint spawPoint)
     {
-       AddSpawnPoint(ref _spawnPoints, spawPoint);
-              
+       AddSpawnPoint(ref _spawnPoints, spawPoint);            
     }
 
     public void UnRegisterSpawnPoint(SpawnPoint spawPoint)
@@ -36,7 +35,6 @@ public class SpawnManager : MonoBehaviour
 
         foreach (SpawnPoint point in _spawnPoints)
         {
-            //m_NrEnemiesAlive++;
             point.Spawn();
         }
     }
@@ -60,6 +58,7 @@ public class SpawnManager : MonoBehaviour
             }
 
             _hasToSpawn= false;
+            _amountToSpawn = 2;
         }
     }
 
@@ -67,6 +66,5 @@ public class SpawnManager : MonoBehaviour
     public void SpawnNewWave()
     {
         _hasToSpawn = true;
-        _amountToSpawn++;
     }
 }
