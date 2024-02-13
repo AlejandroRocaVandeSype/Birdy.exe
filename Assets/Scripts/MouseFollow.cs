@@ -8,20 +8,67 @@ public class MouseFollow : MonoBehaviour
     private Vector3 _worldPosition;
     private Vector3 _screenPosition;
     private Vector2 _screenBounds;
+    [SerializeField] private GameObject _mouseGO;
+
+    private float _maxWait = 3f;
+    private float _swapTime = 0.3f;
+    private float _seconds = 0f;
+    private float _maxSeconds = 0f;
+    private Color _currentColor = Color.red;
+
+    private bool _wasHit = false;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+    
     }
 
     // Update is called once per frame
     void Update()
     {
+        GetMousePos();
+
+        if(_wasHit)
+        {
+            _seconds += Time.deltaTime;
+            _maxSeconds += Time.deltaTime;
+            if (_maxSeconds < _maxWait)
+            {
+                if (_seconds > _swapTime)
+                {
+                    _seconds = 0f;
+                    _mouseGO.GetComponent<SpriteRenderer>().color = _currentColor;
+                    if(_currentColor == Color.red )
+                    {
+                        _currentColor = Color.white;
+                    }
+                    else
+                    {
+                        _currentColor = Color.red;
+                    }
+                }
+            }
+            else
+            {
+                // Finish max time
+                _seconds = 0f;
+                _maxSeconds = 0f;
+                _wasHit = false;
+                _mouseGO.GetComponent<SpriteRenderer>().color = Color.white;
+                _currentColor = Color.red;
+            }
+           
+        }
+    }
+
+    private void GetMousePos()
+    {
         _screenPosition = Input.mousePosition;
         _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
-        
+
         Vector3 position = _worldPosition;
         position.z = 0;
 
@@ -29,8 +76,6 @@ public class MouseFollow : MonoBehaviour
 
         transform.position = position;
     }
-
-
     private Vector3 BoundaryCheck(Vector3 position)
     {
 
@@ -56,9 +101,12 @@ public class MouseFollow : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Enemy")
+        if (collision.collider.tag == "Enemy" && !_wasHit)
         {
-            Debug.Log("Enemy Hit");
+            _wasHit = true;
+            _mouseGO.GetComponent<SpriteRenderer>().color = _currentColor;
+            _currentColor = Color.white;
+
         }
     }
 }

@@ -6,9 +6,8 @@ using UnityEngine.AI;
 
 public class VirtusBehaviour : MonoBehaviour
 {
-
+   
     private Transform _target;
-
     private NavMeshAgent _agent;
 
     // Start is called before the first frame update
