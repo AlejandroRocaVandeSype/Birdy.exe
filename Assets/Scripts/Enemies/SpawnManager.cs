@@ -30,17 +30,6 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    public void SpawnVirus()
-    {
-
-        foreach (SpawnPoint point in _spawnPoints)
-        {
-            point.Spawn();
-        }
-    }
-
-
-
     // Update is called once per frame
     void Update()
     {
@@ -53,7 +42,6 @@ public class SpawnManager : MonoBehaviour
             {
                 
                 int spawnIdx = Random.Range(0, _spawnPoints.Count - 1);
-                Debug.Log(spawnIdx);
                 _spawnPoints[spawnIdx].Spawn();
             }
 
@@ -62,6 +50,13 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+
+
+    public void SpawnOne()
+    {
+        int spawnIdx = Random.Range(0, _spawnPoints.Count - 1);
+        _spawnPoints[spawnIdx].Spawn();
+    }
 
     public void SpawnNewWave()
     {
