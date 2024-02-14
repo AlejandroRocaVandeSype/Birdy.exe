@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -571,10 +571,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.27450982}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.22745098}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -593,9 +593,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2583623006525791422, guid: 5089a985aa9231445a71248d8bb52945, type: 3}
-        m_TargetAssemblyTypeName: StorageClick, Assembly-CSharp
-        m_MethodName: OnStorageClick
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: WindowPopUp, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -623,10 +623,6 @@ PrefabInstance:
     - target: {fileID: 3174537834414189218, guid: 0f02c4913491ac04aad4c7eee5a64211, type: 3}
       propertyPath: m_SortingOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3592526146190664434, guid: 0f02c4913491ac04aad4c7eee5a64211, type: 3}
-      propertyPath: m_Colors.m_NormalColor.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7491510125818422407, guid: 0f02c4913491ac04aad4c7eee5a64211, type: 3}
       propertyPath: m_Name
