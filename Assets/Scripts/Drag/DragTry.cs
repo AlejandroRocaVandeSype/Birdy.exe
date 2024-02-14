@@ -1,25 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-
 
 public class DragTry : MonoBehaviour
 {
-    [SerializeField] private Canvas canvas; 
+    private bool dragging = false;
+    private Vector3 offset;
 
-    public void DragHandler(BaseEventData data)
+    // Update is called once per frame
+    void Update()
     {
-        PointerEventData pointerData = (PointerEventData)data;
+        if (dragging)
+        {
+            // Move object, taking into account original offset.
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+        }
+    }
 
-        Vector2 position; RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)canvas.transform, 
-            pointerData.position, canvas.worldCamera, out position); transform.position = canvas.transform.TransformPoint(position);
-    } 
+    private void OnMouseDown()
+    {
+        // Record the difference between the objects centre, and the clicked point on the camera plane.
+        offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        dragging = true;
+    }
 
-
-
+    private void OnMouseUp()
+    {
+        // Stop dragging.
+        dragging = false;
+    }
 }
-     
-
-        
- 
