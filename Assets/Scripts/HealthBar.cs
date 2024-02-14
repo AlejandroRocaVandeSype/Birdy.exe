@@ -11,10 +11,12 @@ public class HealthBar : MonoBehaviour
     public Image fill;
     public Color fillCol;
 
+    private float _maxStorage = 10;
+
     // for testing, depending on how it is implemented in game may need to delete
     void Start()
     {
-        slider.maxValue = 10;
+        slider.maxValue = _maxStorage;
         slider.value = 0;
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
@@ -39,6 +41,12 @@ public class HealthBar : MonoBehaviour
     public void IncreaseCorruption()
     {
         setCorruption(1);
+
+        if(slider.value >= _maxStorage)
+        {
+            // GAME OVER
+            GameManager.Instance.gameStage = GameManager.GameStage.GameOver;
+        }
     }
 
 }

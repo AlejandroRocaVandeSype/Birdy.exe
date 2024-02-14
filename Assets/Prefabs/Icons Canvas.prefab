@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b4993a3031002ed4598fa52d8cc7fd8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -119,7 +119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.019989014, y: 0.039993286}
+  m_AnchoredPosition: {x: -0.020019531, y: 0.039978027}
   m_SizeDelta: {x: 1302, y: 732}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7491510125818422458
@@ -141,7 +141,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 8
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &7491510125818422457
 MonoBehaviour:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7491510125818422456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,18 +227,6 @@ PrefabInstance:
       value: 31.9
       objectReference: {fileID: 0}
     - target: {fileID: 7660949438410892892, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.4356973
-      objectReference: {fileID: 0}
-    - target: {fileID: 7660949438410892892, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.4356973
-      objectReference: {fileID: 0}
-    - target: {fileID: 7660949438410892892, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.4356973
-      objectReference: {fileID: 0}
-    - target: {fileID: 7660949438410892892, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -290,26 +278,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
-    - target: {fileID: 7660949438410892899, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
-      propertyPath: fill
-      value: 
-      objectReference: {fileID: 983500130577756243}
-    - target: {fileID: 7660949438410892899, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
-      propertyPath: fillCol.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7660949438410892899, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
-      propertyPath: fillCol.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7660949438410892899, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
-      propertyPath: fillCol.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7660949438410892899, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
-      propertyPath: fillCol.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7660949439000204441, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -325,14 +293,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7660949438410892892, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
   m_PrefabInstance: {fileID: 7491510125915989195}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &983500130577756243 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7660949439000204440, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
-  m_PrefabInstance: {fileID: 7491510125915989195}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

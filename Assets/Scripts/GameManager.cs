@@ -40,7 +40,9 @@ public class GameManager : MonoBehaviour
     private VirusManager _virusManager = null;
     [SerializeField] private HealthBar _healthBar = null;
 
-    public enum GameStage { Menu, Start, Gameplay, WaitToStart }
+    [SerializeField] private GameObject _endingScreen = null;
+
+    public enum GameStage { Menu, Start, Gameplay, WaitToStart, GameOver, Wait }
     private GameStage _gameStage;
 
     // Start is called before the first frame update
@@ -67,6 +69,19 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void Update()
+    {
+        if(_gameStage == GameStage.GameOver)
+        {
+            LoadGameOverScreen();
+            _gameStage = GameStage.Wait;
+        }
+    }
+
+    private void LoadGameOverScreen()
+    {
+        _endingScreen.SetActive(true);
+    }
 
     public SpawnManager SpawnManager
     {

@@ -32,7 +32,10 @@ public class VirtusBehaviour : MonoBehaviour
     void Update()
     {
 
-        if(GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
+        if (GameManager.Instance.gameStage == GameManager.GameStage.Wait)
+            return;
+
+        if (GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
         {
             _agent.SetDestination(_target.position);
         }
