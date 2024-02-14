@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         slider.maxValue = 10;
-        slider.value = 1;
+        slider.value = 0;
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
@@ -30,8 +30,15 @@ public class HealthBar : MonoBehaviour
 
     public void setCorruption(int corruption)
     {
-        slider.value = corruption+1;
+        slider.value += corruption;
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
+
+
+    public void IncreaseCorruption()
+    {
+        setCorruption(1);
+    }
+
 }

@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     private SpawnManager _spawnManager = null;
     private VirusManager _virusManager = null;
+    [SerializeField] private HealthBar _healthBar = null;
 
     public enum GameStage { Menu, Start, Gameplay, WaitToStart }
     private GameStage _gameStage;
@@ -75,6 +76,11 @@ public class GameManager : MonoBehaviour
     public VirusManager VirusManager
     {
         get { return _virusManager; }
+    }
+
+    public HealthBar Storage
+    {
+        get { return _healthBar; }
     }
 
 

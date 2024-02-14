@@ -118,6 +118,7 @@ public class MouseFollow : MonoBehaviour
             _mouseGO.GetComponent<SpriteRenderer>().color = _currentColor;
             _currentColor = Color.white;
             _gameManager.VirusManager.PlayerHit();      // Sent a notifaction that the player was hit
+            _gameManager.Storage.IncreaseCorruption();
           
         }
     }
