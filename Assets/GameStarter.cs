@@ -7,7 +7,9 @@ public class GameStarter : MonoBehaviour
 {
 
     public Animator cinematic;
-    public float cinematicTime = 2.2f;
+    public float cinematicTime = 2f;
+    public Animator fade;
+
 
     // Update is called once per frame
     void Update()
@@ -27,6 +29,7 @@ public class GameStarter : MonoBehaviour
     {
         // play animation
         cinematic.SetTrigger("Start");
+        fade.SetTrigger("Start");
 
         // wait
         yield return new WaitForSeconds(cinematicTime);
