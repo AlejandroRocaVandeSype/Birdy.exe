@@ -53,6 +53,7 @@ Material:
     - Vector1_96075e76b5b6498db5553dabd6cc8358: 0.1
     - Vector1_9cf0a303de5045de8ff54f75939ba477: 1
     - Vector1_a792b4e3d2a243afb1483bf0010b9ad8: 0.2
+    - Vector1_ebe26a553c574c808106a5a4a8ff910c: -0.05
     - _Line_Amount: 7
     - _Noise_Amount: 0.1
     - _Noise_Scale: 100
