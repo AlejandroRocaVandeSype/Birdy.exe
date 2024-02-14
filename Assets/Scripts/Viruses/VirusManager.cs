@@ -15,7 +15,7 @@ public class VirusManager : MonoBehaviour
     private int _errorWindowsCount = 0;
     private int _windowPopUpCount = 0;
     private float _windowPopUpSeconds;
-    private float _maxWindowPopUp = 0.5f;
+    private float _maxWindowPopUp = 0.2f;
     private bool _isDone = false;
 
     [SerializeField] private List<GameObject> _windowPositions = new List<GameObject>();
