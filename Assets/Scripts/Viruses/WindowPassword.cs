@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static VirusManager;
 
 public class WindowPassword : WindowBasic
 {
@@ -14,7 +15,7 @@ public class WindowPassword : WindowBasic
         {
             // Correct password
             CloseWindow();
-            GameManager.Instance.gameStage = GameManager.GameStage.UserWin;
+            GameManager.Instance.VirusManager.Stage = VirusStage.DestroyWindows;
         }
 
     }

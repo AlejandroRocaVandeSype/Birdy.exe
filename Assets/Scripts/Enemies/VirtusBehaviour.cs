@@ -41,7 +41,7 @@ public class VirtusBehaviour : MonoBehaviour
             _agent.SetDestination(_target.transform.position);
         }
 
-        if(GameManager.Instance.VirusManager.Stage == VirusManager.VirusStage.Wait)
+        if(GameManager.Instance.VirusManager.Stage == VirusManager.VirusStage.FirstVirus)
         {
             // First enemy will move faster
             _agent.speed = _startSpeed * 2;
