@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class HealthBar : MonoBehaviour
     public Gradient gradient;
     public Image fill;
     public Color fillCol;
+    public Animator damageAnimation;
 
     private float _maxStorage = 10;
 
@@ -42,6 +44,7 @@ public class HealthBar : MonoBehaviour
     {
         setCorruption(1);
 
+        damageAnimation.SetTrigger("Damage");
 
         if(slider.value >= _maxStorage)
         {

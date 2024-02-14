@@ -232,6 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4593194964612028187}
   - component: {fileID: 3174537834414189218}
+  - component: {fileID: 2672368947943012985}
   m_Layer: 0
   m_Name: Hard Drive
   m_TagString: Untagged
@@ -304,6 +305,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2672368947943012985
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6043483950239563201}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a91e0824798bbf244846d45394f2fca8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7491510125818422407
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +336,7 @@ GameObject:
   - component: {fileID: 7491510125818422458}
   - component: {fileID: 7491510125818422457}
   - component: {fileID: 7491510125818422456}
+  - component: {fileID: 6998208158890569117}
   m_Layer: 5
   m_Name: Icons Canvas
   m_TagString: Untagged
@@ -406,6 +427,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!95 &6998208158890569117
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491510125818422407}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7491510125915989195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -505,6 +545,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7660949438410892899, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
+      propertyPath: damageAnimation
+      value: 
+      objectReference: {fileID: 2672368947943012985}
     - target: {fileID: 7660949439000204441, guid: bc2c0aa60d56ed340a84fcbf8c41e641, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
