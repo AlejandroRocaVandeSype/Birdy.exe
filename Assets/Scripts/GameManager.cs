@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     private SpawnManager _spawnManager = null;
     private VirusManager _virusManager = null;
 
-    public enum GameStage { Start, Gameplay, Wait }
+    public enum GameStage { Menu, Start, Gameplay, WaitToStart }
     private GameStage _gameStage;
 
     // Start is called before the first frame update
