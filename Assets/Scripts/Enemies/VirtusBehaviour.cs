@@ -7,10 +7,11 @@ using UnityEngine.AI;
 public class VirtusBehaviour : MonoBehaviour
 {
    
-    private Transform _target;
+    private GameObject _target;
     private NavMeshAgent _agent;
     private float _startSpeed;
     private float _startAccel;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -20,10 +21,11 @@ public class VirtusBehaviour : MonoBehaviour
         
         _agent.updateUpAxis = false;
 
-        _target = FindObjectOfType<MouseFollow>().gameObject.transform;
+        _target = FindObjectOfType<MouseFollow>().gameObject;
 
         _startSpeed = _agent.speed;
         _startAccel = _agent.acceleration;
+
     }
 
    
@@ -37,7 +39,7 @@ public class VirtusBehaviour : MonoBehaviour
 
         if (GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
         {
-            _agent.SetDestination(_target.position);
+            _agent.SetDestination(_target.transform.position);
         }
 
         if(GameManager.Instance.VirusManager.Stage == VirusManager.VirusStage.Wait)
@@ -52,7 +54,17 @@ public class VirtusBehaviour : MonoBehaviour
             _agent.speed = _startSpeed;
             _agent.acceleration = _startAccel;
         }
-        
+
+        if (Vector3.Distance(transform.position, _target.transform.position) < 0.3f)
+        {
+            if (!_target.GetComponent<MouseFollow>().WasHit)
+            {
+                Kill();
+                _target.GetComponent<MouseFollow>().PlayerHit();
+            }
+
+        }
+
     }
 
 

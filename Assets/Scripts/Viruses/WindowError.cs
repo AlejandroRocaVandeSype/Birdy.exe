@@ -10,11 +10,6 @@ public class WindowError : WindowBasic
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // This window only appears once. When it is closed the game actually starts
     protected override void CloseWindow()

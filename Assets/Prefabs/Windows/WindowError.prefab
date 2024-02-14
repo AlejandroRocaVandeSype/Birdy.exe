@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4981752888490510295}
   - component: {fileID: 4981752888490510288}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4981752888833032536}
   - component: {fileID: 4981752888833032543}
   - component: {fileID: 4981752888833032542}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4981752889540123458}
   - component: {fileID: 4981752889540123459}
-  m_Layer: 0
+  - component: {fileID: 5162619356751528186}
+  m_Layer: 6
   m_Name: WindowError
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,6 +230,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _base: {fileID: 4981752888490510294}
   _closeButton: {fileID: 0}
+--- !u!61 &5162619356751528186
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981752889540123457}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.5, y: 4}
+  m_EdgeRadius: 0
 --- !u!1 &9091973870924611800
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +268,7 @@ GameObject:
   - component: {fileID: 6067533891694702899}
   - component: {fileID: 657312623609876088}
   - component: {fileID: 5281402248694693359}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: YesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}

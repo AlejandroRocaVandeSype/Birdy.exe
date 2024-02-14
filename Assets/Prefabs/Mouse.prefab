@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4231022802989685383}
   - component: {fileID: 6320812175594416718}
-  - component: {fileID: 5221662206655151218}
+  - component: {fileID: 9117501972447805732}
   m_Layer: 8
   m_Name: Mouse
   m_TagString: Friendly
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseGO: {fileID: 961808022390133130}
---- !u!58 &5221662206655151218
+--- !u!58 &9117501972447805732
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,6 +141,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02, y: 0.01}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.1

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1615190404632723485}
   - component: {fileID: 4271906571463195086}
-  m_Layer: 0
+  - component: {fileID: 9101691652531653949}
+  m_Layer: 6
   m_Name: WindowPopV9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +48,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _base: {fileID: 4630028230665324395}
   _closeButton: {fileID: 8351315357840688398}
+--- !u!61 &9101691652531653949
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568811379949724868}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.048425674, y: 0.031123757}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 11.864037, y: 4.7600946}
+  m_EdgeRadius: 0
 --- !u!1 &2959436977386780130
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +86,7 @@ GameObject:
   - component: {fileID: 4592097553734561301}
   - component: {fileID: 5691698412298677420}
   - component: {fileID: 4441129497080395608}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3378903473652068006}
   - component: {fileID: 6090114826364753870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +268,7 @@ GameObject:
   - component: {fileID: 6216656516422098009}
   - component: {fileID: 7662176079245784688}
   - component: {fileID: 3986155385143082899}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}

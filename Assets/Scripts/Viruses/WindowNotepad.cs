@@ -10,6 +10,7 @@ public class WindowNotepad : WindowBasic
         CloseWindow();
     }
 
+
     protected override void CloseWindow()
     {
         Destroy(gameObject);

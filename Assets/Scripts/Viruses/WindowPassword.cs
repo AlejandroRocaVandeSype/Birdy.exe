@@ -14,6 +14,7 @@ public class WindowPassword : WindowBasic
         {
             // Correct password
             CloseWindow();
+            GameManager.Instance.gameStage = GameManager.GameStage.UserWin;
         }
 
     }

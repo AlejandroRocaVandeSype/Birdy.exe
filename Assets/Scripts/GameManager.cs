@@ -42,7 +42,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _endingScreen = null;
 
-    public enum GameStage { Menu, Start, Gameplay, WaitToStart, GameOver, Wait }
+    [SerializeField] private MouseFollow _mouse = null;
+
+    public enum GameStage { Menu, Start, Gameplay, WaitToStart, GameOver, Wait, UserWin, WinScreen }
     private GameStage _gameStage;
 
     // Start is called before the first frame update
@@ -76,6 +78,11 @@ public class GameManager : MonoBehaviour
             LoadGameOverScreen();
             _gameStage = GameStage.Wait;
         }
+
+        if(_gameStage == GameStage.UserWin)
+        {
+            _virusManager.UserWin();
+        }
     }
 
     private void LoadGameOverScreen()
@@ -104,5 +111,11 @@ public class GameManager : MonoBehaviour
         get { return _gameStage; }
         set { _gameStage = value; }
     }
+
+    public MouseFollow Mouse
+    {
+        get { return _mouse; }
+    }
+
 
 }

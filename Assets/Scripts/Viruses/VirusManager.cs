@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,6 +22,12 @@ public class VirusManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> _windowPositions = new List<GameObject>();
     [SerializeField] private List<GameObject> _firstWindowPos = new List<GameObject>();
+
+    // Keep track of all windows from the game
+    private List<GameObject> _windowsInGame = new List<GameObject>();
+
+    private float _secondsDestroyWindows = 0f;
+    private float _maxSecondsDestroyWindows = 0.5f;
 
     // Start is called before the first frame update
     void Awake()
@@ -72,12 +79,7 @@ public class VirusManager : MonoBehaviour
         {
             _windowPopUpSeconds += Time.deltaTime;
             if(_windowPopUpSeconds > _maxWindowPopUp)
-            {
-
-                //int index = Random.Range(0, _windowPositions.Count - 1);
-                //GameObject positionToPopUp = _windowPositions[index];
-                //InstantiateWindow(_windowErrorTemplate, positionToPopUp.transform.position, positionToPopUp.transform.rotation);
-               
+            {  
                if(_errorWindowsCount == 3 && _isDone == false)
                {
                    InstantiateWindow(_windowErrorTemplate, _firstWindowPos[_errorWindowsCount].transform.position, _firstWindowPos[_errorWindowsCount].transform.rotation);
@@ -130,9 +132,38 @@ public class VirusManager : MonoBehaviour
 
     private void InstantiateWindow(GameObject windowTemplate, Vector3 position, Quaternion rotation)
     {
-        Instantiate(windowTemplate, position, rotation);
+        _windowsInGame.Add(Instantiate(windowTemplate, position, rotation));
     }
 
+
+
+    public void UserWin()
+    {
+        // Destroy all opened windows
+        _secondsDestroyWindows += Time.deltaTime;
+        if(_secondsDestroyWindows > _maxSecondsDestroyWindows)
+        {
+            int count = 0;
+            for (int index = 0; index < _windowsInGame.Count; index++)
+            {
+                if (_windowsInGame[index] != null)
+                {
+                    Destroy(_windowsInGame[index].gameObject);
+                    _windowsInGame[index] = null;
+                    break;
+                }
+                else
+                {
+                    count++;
+                    if(count == _windowsInGame.Count)
+                    {
+                        GameManager.Instance.gameStage = GameManager.GameStage.WinScreen;
+                    }
+                }
+            }
+            _secondsDestroyWindows = 0;
+        }
+    }
 
     public VirusStage Stage
     {

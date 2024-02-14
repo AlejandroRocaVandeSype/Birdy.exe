@@ -28,7 +28,7 @@ public class MouseFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;         // Don't show mouse cursor
+       // Cursor.visible = false;         // Don't show mouse cursor
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         _gameManager = GameManager.Instance;
     }
@@ -114,17 +114,23 @@ public class MouseFollow : MonoBehaviour
     {
         if (collision.collider.tag == ENEMY_TAG && !_wasHit)
         {
-            _wasHit = true;
-            _mouseGO.GetComponent<SpriteRenderer>().color = _currentColor;
-            _currentColor = Color.white;
-            _gameManager.VirusManager.PlayerHit();      // Sent a notifaction that the player was hit
-            _gameManager.Storage.IncreaseCorruption();
-          
+
+            PlayerHit();
         }
+    }
+
+    public void PlayerHit()
+    {
+        _wasHit = true;
+        _mouseGO.GetComponent<SpriteRenderer>().color = _currentColor;
+        _currentColor = Color.white;
+        _gameManager.VirusManager.PlayerHit();      // Sent a notifaction that the player was hit
+        _gameManager.Storage.IncreaseCorruption();
     }
 
     public bool WasHit
     {
         get { return _wasHit; }
+        set { _wasHit = true; }
     }
 }

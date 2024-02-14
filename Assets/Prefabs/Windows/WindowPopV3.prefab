@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1297769823991570834}
   - component: {fileID: 5454254237194974769}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5549609438147264319}
   - component: {fileID: 9145476364041793184}
   - component: {fileID: 3493217074275988124}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 6030102143187605130}
   - component: {fileID: 2695864538075022211}
   - component: {fileID: 3477361105256849796}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: SecondButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6101142288330818926}
   - component: {fileID: 1848690132735187365}
-  m_Layer: 0
+  - component: {fileID: 1687924329195627826}
+  m_Layer: 6
   m_Name: WindowPopV3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,6 +363,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _base: {fileID: 4013396946885743871}
   _closeButton: {fileID: 8597780170683729895}
+--- !u!61 &1687924329195627826
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301970441101379413}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.015071988, y: -0.004882574}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.9239957, y: 6.5261683}
+  m_EdgeRadius: 0
 --- !u!1 &8597780170683729895
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +401,7 @@ GameObject:
   - component: {fileID: 807778281325203439}
   - component: {fileID: 4303087588523585037}
   - component: {fileID: 5383825412840856446}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
