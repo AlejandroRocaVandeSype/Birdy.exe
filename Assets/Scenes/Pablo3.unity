@@ -1617,6 +1617,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Icons Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7491510125818422457, guid: 0f02c4913491ac04aad4c7eee5a64211, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7491510125818422458, guid: 0f02c4913491ac04aad4c7eee5a64211, type: 3}
       propertyPath: m_Camera
       value: 
