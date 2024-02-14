@@ -11,13 +11,15 @@ public class VirusManager : MonoBehaviour
 
     [SerializeField] private GameObject _windowErrorTemplate = null;
     [SerializeField] private List<GameObject> _windowPopUps = new List<GameObject>();
-    private const int MAX_ERRORS = 5;
+    private const int MAX_ERRORS = 9;
     private int _errorWindowsCount = 0;
+    private int _windowPopUpCount = 0;
     private float _windowPopUpSeconds;
     private float _maxWindowPopUp = 0.5f;
-    private bool _isFirstStep = true;
+    private bool _isDone = false;
 
     [SerializeField] private List<GameObject> _windowPositions = new List<GameObject>();
+    [SerializeField] private List<GameObject> _firstWindowPos = new List<GameObject>();
 
     // Start is called before the first frame update
     void Awake()
@@ -71,17 +73,31 @@ public class VirusManager : MonoBehaviour
             if(_windowPopUpSeconds > _maxWindowPopUp)
             {
 
-                int index = Random.Range(0, _windowPositions.Count - 1);
-                GameObject positionToPopUp = _windowPositions[index];
-                InstantiateWindow(_windowErrorTemplate, positionToPopUp.transform.position, positionToPopUp.transform.rotation);
+                //int index = Random.Range(0, _windowPositions.Count - 1);
+                //GameObject positionToPopUp = _windowPositions[index];
+                //InstantiateWindow(_windowErrorTemplate, positionToPopUp.transform.position, positionToPopUp.transform.rotation);
+               
+               if(_errorWindowsCount == 3 && _isDone == false)
+               {
+                   InstantiateWindow(_windowErrorTemplate, _firstWindowPos[_errorWindowsCount].transform.position, _firstWindowPos[_errorWindowsCount].transform.rotation);
+                    _errorWindowsCount--; // To avoid array out of bounds for the windowPopUps
+                    _isDone = true;
+                }
+               else
+               {
+                    
+                   InstantiateWindow(_windowPopUps[_errorWindowsCount], _firstWindowPos[_windowPopUpCount].transform.position, _firstWindowPos[_windowPopUpCount].transform.rotation);
+               }
+                            
                 _windowPopUpSeconds = 0;
                 _errorWindowsCount++;
+                _windowPopUpCount++;
             }
             
             if (_errorWindowsCount >= MAX_ERRORS)
             {
                 _stage = VirusStage.PasswordPhase;
-                _maxWindowPopUp = 3f; 
+                _maxWindowPopUp = 5f; 
             }                                             
         }
     }
