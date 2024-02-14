@@ -782,6 +782,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _windowErrorTemplate: {fileID: 4981752889540123457, guid: e9417f039df773e48b509cfa0251586f, type: 3}
+  _windowPopUps:
+  - {fileID: 1677802680107391796, guid: 1b4a8ab5efbfd2245828a7cdcc5919fa, type: 3}
+  - {fileID: 1277178430729230761, guid: 9f7707f6b4345af4db643b3c77748f0e, type: 3}
+  - {fileID: 8301970441101379413, guid: a3919ad6ee62a8f4b8a102bbf87b412f, type: 3}
+  - {fileID: 3951744414092104372, guid: 9ebbe8010109ce14689b9f451f12c3bd, type: 3}
+  - {fileID: 7546646785048841865, guid: dc06a1b001ad429439822859a910ff06, type: 3}
+  - {fileID: 1687354903417853585, guid: cd521d80794bea24f9bf6201e4e9e850, type: 3}
+  - {fileID: 1687354903417853585, guid: cd521d80794bea24f9bf6201e4e9e850, type: 3}
+  - {fileID: 3144080639752920138, guid: a4d12e8a94655e948b482cae148d3099, type: 3}
   _windowPositions:
   - {fileID: 7646283424300400116}
   - {fileID: 7646283424300400115}

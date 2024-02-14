@@ -10,10 +10,11 @@ public class VirusManager : MonoBehaviour
     private VirusStage _stage;
 
     [SerializeField] private GameObject _windowErrorTemplate = null;
+    [SerializeField] private List<GameObject> _windowPopUps = new List<GameObject>();
     private const int MAX_ERRORS = 5;
     private int _errorWindowsCount = 0;
-    private float _errorSeconds;
-    private float _maxErrorSeconds = 0.5f;
+    private float _windowPopUpSeconds;
+    private float _maxWindowPopUp = 0.5f;
     private bool _isFirstStep = true;
 
     [SerializeField] private List<GameObject> _windowPositions = new List<GameObject>();
@@ -49,11 +50,16 @@ public class VirusManager : MonoBehaviour
                 WindowsErrorFase();
                 break;
 
-            //case VirusStage.ErrorFase2:
-            //    {
-            //        WindowsErrorFase2();
-            //        break;
-            //    }
+            case VirusStage.PasswordPhase:
+                {
+                    
+                    break;
+                }
+        }
+
+        if(_stage != VirusStage.Wait && _stage != VirusStage.MultipleErrors)
+        {
+            RandomWindowPopUps();
         }
     }
 
@@ -61,40 +67,37 @@ public class VirusManager : MonoBehaviour
     {
         if(_windowErrorTemplate != null )
         {
-            _errorSeconds += Time.deltaTime;
-            if(_errorSeconds > _maxErrorSeconds)
+            _windowPopUpSeconds += Time.deltaTime;
+            if(_windowPopUpSeconds > _maxWindowPopUp)
             {
-                InstantiateWindow(_windowErrorTemplate);
-                _errorSeconds = 0;
+
+                int index = Random.Range(0, _windowPositions.Count - 1);
+                GameObject positionToPopUp = _windowPositions[index];
+                InstantiateWindow(_windowErrorTemplate, positionToPopUp.transform.position, positionToPopUp.transform.rotation);
+                _windowPopUpSeconds = 0;
+                _errorWindowsCount++;
             }
             
             if (_errorWindowsCount >= MAX_ERRORS)
             {
                 _stage = VirusStage.PasswordPhase;
-                _maxErrorSeconds = 2f; 
+                _maxWindowPopUp = 3f; 
             }                                             
         }
     }
 
-    private void WindowsErrorFase2()
+    private void RandomWindowPopUps()
     {
-        if (_windowErrorTemplate != null)
+        _windowPopUpSeconds += Time.deltaTime;
+        if (_windowPopUpSeconds > _maxWindowPopUp)
         {
-            _errorSeconds += Time.deltaTime;
-            if (_errorSeconds > _maxErrorSeconds)
-            {
-                InstantiateWindow(_windowErrorTemplate);
-                _errorSeconds = 0;
-            }
+            int indexWindow = Random.Range(0, _windowPopUps.Count - 1);
+            GameObject windowToPopUp = _windowPopUps[indexWindow];
+            int indexPosition = Random.Range(0, _windowPositions.Count -1);
+            GameObject position = _windowPositions[indexPosition];
+            InstantiateWindow(windowToPopUp, position.transform.position, position.transform.rotation);
+            _windowPopUpSeconds = 0;
         }
-    }
-
-    private void InstantiateWindow(GameObject windowTemplate)
-    {
-       
-        int index = Random.Range(0, _windowPositions.Count - 1);
-        Instantiate(windowTemplate, _windowPositions[index].transform.localPosition, _windowPositions[index].transform.rotation);
-        _errorWindowsCount++;
     }
 
 
