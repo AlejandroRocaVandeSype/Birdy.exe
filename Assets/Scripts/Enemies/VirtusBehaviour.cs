@@ -9,6 +9,8 @@ public class VirtusBehaviour : MonoBehaviour
    
     private Transform _target;
     private NavMeshAgent _agent;
+    private float _startSpeed;
+    private float _startAccel;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,6 +21,9 @@ public class VirtusBehaviour : MonoBehaviour
         _agent.updateUpAxis = false;
 
         _target = FindObjectOfType<MouseFollow>().gameObject.transform;
+
+        _startSpeed = _agent.speed;
+        _startAccel = _agent.acceleration;
     }
 
    
@@ -30,6 +35,19 @@ public class VirtusBehaviour : MonoBehaviour
         if(GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
         {
             _agent.SetDestination(_target.position);
+        }
+
+        if(GameManager.Instance.VirusManager.Stage == VirusManager.VirusStage.Wait)
+        {
+            // First enemy will move faster
+            _agent.speed = _startSpeed * 2;
+            _agent.acceleration = _startAccel * 2;
+        }
+        else
+        {
+            // Rest of the enemies will move normal speed
+            _agent.speed = _startSpeed;
+            _agent.acceleration = _startAccel;
         }
         
     }
