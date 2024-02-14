@@ -12,7 +12,6 @@ public class VirtusBehaviour : MonoBehaviour
     private float _startSpeed;
     private float _startAccel;
 
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -90,4 +89,7 @@ public class VirtusBehaviour : MonoBehaviour
         GameManager.Instance.SpawnManager.SpawnNewWave();
 
     }
+
+
+
 }

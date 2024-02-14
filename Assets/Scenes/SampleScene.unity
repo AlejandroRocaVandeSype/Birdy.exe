@@ -938,6 +938,7 @@ MonoBehaviour:
   - {fileID: 688664946}
   - {fileID: 1353396259}
   - {fileID: 1269964511}
+  _deathAnimationTemplate: {fileID: 5764229601178985485, guid: f8e6d5200a7881342bd38a7a1d6ad7c7, type: 3}
 --- !u!1 &765913587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1907,22 +1908,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 52213383, guid: 16ba87a32bc1f5743a06d4a60bb8963d, type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 52213385, guid: 16ba87a32bc1f5743a06d4a60bb8963d, type: 3}
-      propertyPath: m_SortingOrder
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 310025365, guid: 16ba87a32bc1f5743a06d4a60bb8963d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523270361378118129, guid: 16ba87a32bc1f5743a06d4a60bb8963d, type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4968391516456141907, guid: 16ba87a32bc1f5743a06d4a60bb8963d, type: 3}
       propertyPath: m_RootOrder
       value: 1

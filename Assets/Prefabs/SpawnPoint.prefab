@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8ab2e5d72536744bcdf3a2bd5745ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _virusTemplate: {fileID: 489401472227209108, guid: 0827860e344f6b24f9d78e3f86db7bb3, type: 3}
+  _virusTemplate: {fileID: 489401472227209108, guid: 01270d8e81ded1641976ed1da0fd3b1e, type: 3}

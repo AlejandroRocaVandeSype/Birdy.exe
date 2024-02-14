@@ -7,7 +7,8 @@ using UnityEngine.UIElements;
 
 public class VirusManager : MonoBehaviour
 {
-    public enum VirusStage { Wait, MultipleErrors, PasswordPhase, CounterPhase, DragAndDropPhase};
+    public enum VirusStage { Wait, MultipleErrors, PasswordPhase, CounterPhase, DragAndDropPhase,
+    VirusEnd };
     private VirusStage _stage;
 
     [SerializeField] private GameObject _windowErrorTemplate = null;
@@ -28,6 +29,8 @@ public class VirusManager : MonoBehaviour
 
     private float _secondsDestroyWindows = 0f;
     private float _maxSecondsDestroyWindows = 0.5f;
+
+    [SerializeField] private GameObject _deathAnimationTemplate = null;
 
     // Start is called before the first frame update
     void Awake()
@@ -65,9 +68,15 @@ public class VirusManager : MonoBehaviour
                     WindowPasswordDraw();
                     break;
                 }
+            case VirusStage.VirusEnd:
+                {
+
+                    break;
+                }
         }
 
-        if(_stage != VirusStage.Wait && _stage != VirusStage.MultipleErrors)
+        if(_stage != VirusStage.Wait && _stage != VirusStage.MultipleErrors
+            && _stage != VirusStage.VirusEnd)
         {
             RandomWindowPopUps();
         }
@@ -157,7 +166,9 @@ public class VirusManager : MonoBehaviour
                     count++;
                     if(count == _windowsInGame.Count)
                     {
-                        GameManager.Instance.gameStage = GameManager.GameStage.WinScreen;
+                        _stage = VirusStage.VirusEnd;
+                        Instantiate(_deathAnimationTemplate, Vector3.zero, Quaternion.identity);  
+                        //GameManager.Instance.gameStage = GameManager.GameStage.WinScreen;
                     }
                 }
             }
