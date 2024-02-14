@@ -10,6 +10,7 @@ public class VirusManager : MonoBehaviour
     private VirusStage _stage;
 
     [SerializeField] private GameObject _windowErrorTemplate = null;
+    [SerializeField] private GameObject _windowPasswordTemplate = null;
     [SerializeField] private List<GameObject> _windowPopUps = new List<GameObject>();
     private const int MAX_ERRORS = 9;
     private int _errorWindowsCount = 0;
@@ -54,7 +55,7 @@ public class VirusManager : MonoBehaviour
 
             case VirusStage.PasswordPhase:
                 {
-                    
+                    WindowPasswordDraw();
                     break;
                 }
         }
@@ -114,6 +115,16 @@ public class VirusManager : MonoBehaviour
             InstantiateWindow(windowToPopUp, position.transform.position, position.transform.rotation);
             _windowPopUpSeconds = 0;
         }
+    }
+
+    private void WindowPasswordDraw()
+    {
+        if(_windowPasswordTemplate != null)
+        {
+            InstantiateWindow(_windowPasswordTemplate, Vector3.zero, Quaternion.identity);
+            _stage = VirusStage.CounterPhase;
+        }
+        
     }
 
 
