@@ -42,6 +42,7 @@ public class HealthBar : MonoBehaviour
     {
         setCorruption(1);
 
+
         if(slider.value >= _maxStorage)
         {
             // GAME OVER
