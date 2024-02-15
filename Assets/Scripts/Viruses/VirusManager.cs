@@ -32,7 +32,7 @@ public class VirusManager : MonoBehaviour
 
     [SerializeField] private GameObject _deathAnimationTemplate = null;
 
-    private float _secondsForPassword = 10f;
+    private float _secondsForPassword = 60f;
     private float _currentSecondsPass = 0f;
 
     private VirusStage _stageToChange = VirusStage.VirusEnd;
@@ -242,7 +242,7 @@ public class VirusManager : MonoBehaviour
         if (_windowPopUpSeconds > _maxWindowPopUp)
         {
             if (_maxWindowPopUp == 0f)
-                _maxWindowPopUp = 3f;   // After first window appears, the next ones will appear after short times
+                _maxWindowPopUp = 8f;   // After first window appears, the next ones will appear after short times
 
             int indexWindow = Random.Range(0, _windowPopUps.Count - 1);
             GameObject windowToPopUp = _windowPopUps[indexWindow];
