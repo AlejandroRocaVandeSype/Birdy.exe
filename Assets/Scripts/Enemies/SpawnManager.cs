@@ -33,21 +33,25 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Remove any objects that are null
-        _spawnPoints.RemoveAll(s => s == null);
-
-        if(_hasToSpawn == true)
+        if(GameManager.Instance.gameStage != GameManager.GameStage.Start &&
+            GameManager.Instance.gameStage != GameManager.GameStage.WaitToStart)
         {
-            for(int spawnCount = 0; spawnCount < _amountToSpawn; ++spawnCount)
-            {
-                
-                int spawnIdx = Random.Range(0, _spawnPoints.Count - 1);
-                _viruses.Add(_spawnPoints[spawnIdx].Spawn());
-            }
+            // Remove any objects that are null
+            _spawnPoints.RemoveAll(s => s == null);
 
-            _hasToSpawn= false;
-            _amountToSpawn = 2;
-        }
+            if (_hasToSpawn == true)
+            {
+                for (int spawnCount = 0; spawnCount < _amountToSpawn; ++spawnCount)
+                {
+
+                    int spawnIdx = Random.Range(0, _spawnPoints.Count - 1);
+                    _viruses.Add(_spawnPoints[spawnIdx].Spawn());
+                }
+
+                _hasToSpawn = false;
+                _amountToSpawn = 2;
+            }
+        }     
     }
 
 
