@@ -12,6 +12,7 @@ public class MouseFollow : MonoBehaviour
     [SerializeField] private Sprite _mouseNoHit;
     [SerializeField] private Sprite _mouseHit;
     [SerializeField] private GameObject _mouseAntivirus;
+    [SerializeField] private GameObject _damageImage;
     private Sprite _currentSprite;
 
     // Sprite swap/color when hit
@@ -28,6 +29,12 @@ public class MouseFollow : MonoBehaviour
     private const string ENEMY_TAG = "Enemy";
     private GameManager _gameManager = null;
 
+
+    private float _maxDamageScreen = 0.1f;
+    private float _secondsDamageScreen = 0f;
+    bool _active = false;
+    bool _done = false;
+    int _count = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +55,36 @@ public class MouseFollow : MonoBehaviour
         {
             InvincibilityUpdate();
             _mouseAntivirus.SetActive(true);
+
+            if(_done == false)
+            {
+                _secondsDamageScreen += Time.deltaTime;
+                if (_secondsDamageScreen > _maxDamageScreen)
+                {
+
+                    _damageImage.SetActive(!_active);
+                    _active = !_active;
+                    _secondsDamageScreen = 0f;
+
+                    if(_active == false)
+                    {
+                        _count++;
+                        if(_count > 1)
+                        {
+                            _done = true;
+                            _count = 1;
+                        }                    
+                    }
+
+                }
+            }
+            
         }
         else
         {
             _mouseAntivirus.SetActive(false);
+            _done = false;
+            _active = false;
         }
     }
 
