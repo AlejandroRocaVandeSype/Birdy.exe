@@ -12,6 +12,8 @@ public class WindowPassword : WindowBasic
     private string _correctPasswordAdmin = "GoodieGarden1943";  // Admin password
     bool _firstPassword = true;
 
+    [SerializeField] private GameObject _storyPrefab = null;
+
     public void CheckPassword()
     {
         if (_passwordField != null)
@@ -22,7 +24,9 @@ public class WindowPassword : WindowBasic
                     // Correct password
                     CloseWindow();
                     GameManager.Instance.VirusManager.Stage = VirusStage.AntivirusStart;
-                    _firstPassword = false;
+
+                    Instantiate(_storyPrefab, GameManager.Instance.StorySpawnPosition.transform.position, Quaternion.identity);
+                _firstPassword = false;
                 }
 
 

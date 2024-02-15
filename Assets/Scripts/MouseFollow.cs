@@ -28,7 +28,7 @@ public class MouseFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // Cursor.visible = false;         // Don't show mouse cursor
+       Cursor.visible = false;         // Don't show mouse cursor
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         _gameManager = GameManager.Instance;
     }

@@ -48,6 +48,8 @@ public class VirusManager : MonoBehaviour
     bool _firstTimeAntivirus = true;
     bool _doOnce = false;
 
+    bool _playMusic = true;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -67,6 +69,11 @@ public class VirusManager : MonoBehaviour
         }
         else if(GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
         {
+            if(_playMusic)
+            {
+                SoundManager.Instance.PlaySound("Music", false);
+                _playMusic = false;
+            }
             VirusUpdate();
         }
         
@@ -294,7 +301,6 @@ public class VirusManager : MonoBehaviour
                     {
                         if(_doOnce == false)
                         {
-                            Debug.Log("Hola");
                             _stage = VirusStage.FirstVirus;
 
                             GameManager.Instance.SpawnManager.KillAll();

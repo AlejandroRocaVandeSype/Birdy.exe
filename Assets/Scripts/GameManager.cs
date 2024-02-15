@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private MouseFollow _mouse = null;
 
+    [SerializeField] private GameObject _spawnPosition;
+
     public enum GameStage { Menu, Start, Gameplay, WaitToStart, GameOver, Wait, UserWin, WinScreen }
     private GameStage _gameStage;
 
@@ -71,6 +73,11 @@ public class GameManager : MonoBehaviour
     }
 
 
+
+    public void Start()
+    {
+        
+    }
     public void Update()
     {
         if(_gameStage == GameStage.GameOver)
@@ -117,5 +124,9 @@ public class GameManager : MonoBehaviour
         get { return _mouse; }
     }
 
+    public GameObject StorySpawnPosition
+    {
+        get { return _spawnPosition; }
+    }
 
 }
