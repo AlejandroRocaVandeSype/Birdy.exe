@@ -32,7 +32,7 @@ public class VirusManager : MonoBehaviour
 
     [SerializeField] private GameObject _deathAnimationTemplate = null;
 
-    private float _secondsForPassword = 60f;
+    private float _secondsForPassword = 30f;
     private float _currentSecondsPass = 0f;
 
     private VirusStage _stageToChange = VirusStage.VirusEnd;
@@ -50,7 +50,7 @@ public class VirusManager : MonoBehaviour
 
     bool _playMusic = true;
 
-
+    bool _firstWait = true;
     // Start is called before the first frame update
     void Awake()
     {
@@ -66,6 +66,7 @@ public class VirusManager : MonoBehaviour
             // Pop Up a single window error in the middle of the screen
             InstantiateWindow(_windowErrorTemplate,Vector3.zero, Quaternion.identity);
             GameManager.Instance.gameStage = GameManager.GameStage.WaitToStart;
+            _secondsToWait = 5f;
         }
         else if(GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
         {
@@ -74,7 +75,21 @@ public class VirusManager : MonoBehaviour
                 SoundManager.Instance.PlaySound("Music", false);
                 _playMusic = false;
             }
-            VirusUpdate();
+
+            if(_firstWait)
+            {
+                _currentSeconds += Time.deltaTime;
+                if (_currentSeconds > _secondsToWait)
+                {
+                    _currentSeconds = 0;
+                    _firstWait = false;
+                }
+            }
+            else
+            {
+                VirusUpdate();
+            }
+                    
         }
         
     }
