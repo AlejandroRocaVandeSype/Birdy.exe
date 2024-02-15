@@ -2996,7 +2996,7 @@ PrefabInstance:
     - target: {fileID: 6320812175594416718, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
       propertyPath: _mouseHit
       value: 
-      objectReference: {fileID: 21300000, guid: 73ae3c7f43213bd46b25f20d43eb52dd, type: 3}
+      objectReference: {fileID: 21300000, guid: 24b2f9613d6e57d448f7eb859d2f5f6b, type: 3}
     - target: {fileID: 6320812175594416718, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
       propertyPath: _mouseNoHit
       value: 
