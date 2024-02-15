@@ -7,17 +7,35 @@ using static VirusManager;
 public class WindowPassword : WindowBasic
 {
     [SerializeField] private InputField _passwordField;
-    private string _correctPassword = "123abc456abc";  // Admin password
-    
+    [SerializeField] private string _password;
+    private string _correctPasswordUser = "123abc456abc";       // User password
+    private string _correctPasswordAdmin = "GoodieGarden1943";  // Admin password
+    bool _firstPassword = true;
+
     public void CheckPassword()
     {
-        if(_passwordField != null && _passwordField.text == _correctPassword)
+        if (_passwordField != null)
         {
-            // Correct password
-            CloseWindow();
-            GameManager.Instance.VirusManager.Stage = VirusStage.DestroyWindows;
-        }
+            
+                if (_passwordField.text == _password  && _password == _correctPasswordUser)
+                {
+                    // Correct password
+                    CloseWindow();
+                    GameManager.Instance.VirusManager.Stage = VirusStage.AntivirusStart;
+                    _firstPassword = false;
+                }
 
+
+            
+                if (_passwordField.text == _password && _password == _correctPasswordAdmin)
+                {
+                    // Correct password
+                    CloseWindow();
+                    GameManager.Instance.VirusManager.Stage = VirusStage.AntivirusStart;
+                }
+            
+
+        }
     }
 
     public void DeletePassword()

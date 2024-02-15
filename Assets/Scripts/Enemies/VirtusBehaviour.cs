@@ -83,10 +83,12 @@ public class VirtusBehaviour : MonoBehaviour
     }
 
 
-    private void Kill()
+    public void Kill(bool lastKill = false)
     {
         Destroy(gameObject);
-        GameManager.Instance.SpawnManager.SpawnNewWave();
+
+        if(lastKill == false)
+            GameManager.Instance.SpawnManager.SpawnNewWave();
 
     }
 

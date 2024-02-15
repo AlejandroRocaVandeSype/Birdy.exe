@@ -35,6 +35,6 @@ public class GameStarter : MonoBehaviour
         yield return new WaitForSeconds(cinematicTime);
 
         // load scene
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

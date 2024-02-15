@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     private bool _hasToSpawn = true;
     private int _amountToSpawn = 1;             // Spawn only one enemy at start
   
-   
+   private List<GameObject> _viruses = new List<GameObject>();
     public void RegisterSpawnPoint(SpawnPoint spawPoint)
     {
        AddSpawnPoint(ref _spawnPoints, spawPoint);            
@@ -42,7 +42,7 @@ public class SpawnManager : MonoBehaviour
             {
                 
                 int spawnIdx = Random.Range(0, _spawnPoints.Count - 1);
-                _spawnPoints[spawnIdx].Spawn();
+                _viruses.Add(_spawnPoints[spawnIdx].Spawn());
             }
 
             _hasToSpawn= false;
@@ -55,11 +55,22 @@ public class SpawnManager : MonoBehaviour
     public void SpawnOne()
     {
         int spawnIdx = Random.Range(0, _spawnPoints.Count - 1);
-        _spawnPoints[spawnIdx].Spawn();
+       _viruses.Add( _spawnPoints[spawnIdx].Spawn());
     }
 
     public void SpawnNewWave()
     {
         _hasToSpawn = true;
+    }
+
+
+    public void KillAll()
+    {
+        foreach(var viruses in _viruses)
+        {
+            if(viruses != null)
+                viruses.GetComponent<VirtusBehaviour>().Kill(true);
+        }
+        _viruses.Clear();
     }
 }
