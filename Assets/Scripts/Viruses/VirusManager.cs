@@ -177,7 +177,7 @@ public class VirusManager : MonoBehaviour
                     else if (_currentIndexAntivirus == _antivirusImages.Count && _firstTimeAntivirus == false)
                     {
                     // Win
-                        for (int index = 1; index <= _antivirusImages.Count - 1; ++index)
+                        for (int index = 1; index <= _antivirusImages.Count - 2; ++index)
                         {
                             _antivirusImages[index].SetActive(false);
                         }
@@ -318,7 +318,8 @@ public class VirusManager : MonoBehaviour
                             _stage = VirusStage.FirstVirus;
 
                             GameManager.Instance.SpawnManager.KillAll();
-
+                            SoundManager.Instance.StopSound("Music");
+                            SoundManager.Instance.PlaySound("Victory", true);
                             Instantiate(_deathAnimationTemplate, Vector3.zero, Quaternion.identity);
                             _doOnce = true;
                         }
