@@ -8,6 +8,8 @@ public class VirusManager : MonoBehaviour
         AntivirusStart,DestroyWindows, WaitSeconds, VirusEnd };
     private VirusStage _stage;
 
+    [SerializeField] private GameObject _storyPrefab = null;
+
     [SerializeField] private GameObject _windowErrorTemplate = null;
     [SerializeField] private GameObject _windowPasswordTemplateUser = null;
     [SerializeField] private GameObject _windowPasswordTemplateAdmin = null;
@@ -76,19 +78,10 @@ public class VirusManager : MonoBehaviour
                 _playMusic = false;
             }
 
-            if(_firstWait)
-            {
-                _currentSeconds += Time.deltaTime;
-                if (_currentSeconds > _secondsToWait)
-                {
-                    _currentSeconds = 0;
-                    _firstWait = false;
-                }
-            }
-            else
-            {
+           
+            
                 VirusUpdate();
-            }
+            
                     
         }
         
@@ -257,14 +250,20 @@ public class VirusManager : MonoBehaviour
         if (_windowPopUpSeconds > _maxWindowPopUp)
         {
             if (_maxWindowPopUp == 0f)
+            {
+                InstantiateWindow(_storyPrefab, Vector3.zero, Quaternion.identity);
                 _maxWindowPopUp = 8f;   // After first window appears, the next ones will appear after short times
-
-            int indexWindow = Random.Range(0, _windowPopUps.Count - 1);
-            GameObject windowToPopUp = _windowPopUps[indexWindow];
-            int indexPosition = Random.Range(0, _windowPositions.Count -1);
-            GameObject position = _windowPositions[indexPosition];
-            InstantiateWindow(windowToPopUp, position.transform.position, position.transform.rotation);
-            _windowPopUpSeconds = 0;
+            }
+            else
+            {
+                int indexWindow = Random.Range(0, _windowPopUps.Count - 1);
+                GameObject windowToPopUp = _windowPopUps[indexWindow];
+                int indexPosition = Random.Range(0, _windowPositions.Count - 1);
+                GameObject position = _windowPositions[indexPosition];
+                InstantiateWindow(windowToPopUp, position.transform.position, position.transform.rotation);
+                _windowPopUpSeconds = 0;
+            }
+               
         }
     }
 

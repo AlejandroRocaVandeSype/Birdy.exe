@@ -13,7 +13,7 @@ public class HealthBar : MonoBehaviour
     public Color fillCol;
     public Animator damageAnimation;
 
-    private float _maxStorage = 10;
+    private float _maxStorage = 15;
 
     // for testing, depending on how it is implemented in game may need to delete
     void Start()

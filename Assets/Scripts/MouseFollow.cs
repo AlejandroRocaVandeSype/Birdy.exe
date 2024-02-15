@@ -15,8 +15,8 @@ public class MouseFollow : MonoBehaviour
     private Sprite _currentSprite;
 
     // Sprite swap/color when hit
-    private float _maxWait = 2f;
-    private float _swapTime = 0.3f;
+    private float _maxWait = 3f;
+    private float _swapTime = 0.2f;
     private float _seconds = 0f;
     private float _maxSeconds = 0f;
     private Color _currentColor = Color.red;
@@ -119,7 +119,8 @@ public class MouseFollow : MonoBehaviour
             _seconds = 0f;
             _maxSeconds = 0f;
             _wasHit = false;
-            _mouseGO.GetComponent<SpriteRenderer>().color = Color.white;
+            //_mouseGO.GetComponent<SpriteRenderer>().color = Color.white;
+            _currentSprite = _mouseNoHit;
             _currentColor = Color.red;
         }
     }
