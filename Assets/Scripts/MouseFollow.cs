@@ -15,7 +15,7 @@ public class MouseFollow : MonoBehaviour
     private Sprite _currentSprite;
 
     // Sprite swap/color when hit
-    private float _maxWait = 3f;
+    private float _maxWait = 2.5f;
     private float _swapTime = 0.2f;
     private float _seconds = 0f;
     private float _maxSeconds = 0f;
@@ -70,13 +70,13 @@ public class MouseFollow : MonoBehaviour
     private Vector3 BoundaryCheck(Vector3 position)
     {
 
-        if (position.x > _screenBounds.x - BORDERS)
+        if (position.x > _screenBounds.x - BORDERS - 0.7f)
         {
-            position.x = _screenBounds.x - BORDERS;
+            position.x = _screenBounds.x - BORDERS - 0.7f;
         }
-        else if (position.x < 0 - _screenBounds.x + BORDERS)
+        else if (position.x < 0 - _screenBounds.x + BORDERS + 0.7f)
         {
-            position.x = 0 - _screenBounds.x + BORDERS;
+            position.x = 0 - _screenBounds.x + BORDERS + 0.7f;
         }
 
         if (position.y > _screenBounds.y - BORDERS)
