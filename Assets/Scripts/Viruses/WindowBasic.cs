@@ -16,7 +16,7 @@ public class WindowBasic : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = GameManager.Instance.Mouse.gameObject.transform.position;
+        transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.Mouse.gameObject.transform.position, 40*Time.deltaTime);
     }
 
     protected virtual void Update()

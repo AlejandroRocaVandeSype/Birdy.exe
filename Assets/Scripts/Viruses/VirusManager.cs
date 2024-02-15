@@ -8,6 +8,8 @@ public class VirusManager : MonoBehaviour
         AntivirusStart,DestroyWindows, WaitSeconds, VirusEnd };
     private VirusStage _stage;
 
+    [SerializeField] private GameObject _storyPrefab = null;
+
     [SerializeField] private GameObject _windowErrorTemplate = null;
     [SerializeField] private GameObject _windowPasswordTemplateUser = null;
     [SerializeField] private GameObject _windowPasswordTemplateAdmin = null;
@@ -32,7 +34,7 @@ public class VirusManager : MonoBehaviour
 
     [SerializeField] private GameObject _deathAnimationTemplate = null;
 
-    private float _secondsForPassword = 10f;
+    private float _secondsForPassword = 30f;
     private float _currentSecondsPass = 0f;
 
     private VirusStage _stageToChange = VirusStage.VirusEnd;
@@ -50,7 +52,7 @@ public class VirusManager : MonoBehaviour
 
     bool _playMusic = true;
 
-
+    bool _firstWait = true;
     // Start is called before the first frame update
     void Awake()
     {
@@ -66,6 +68,7 @@ public class VirusManager : MonoBehaviour
             // Pop Up a single window error in the middle of the screen
             InstantiateWindow(_windowErrorTemplate,Vector3.zero, Quaternion.identity);
             GameManager.Instance.gameStage = GameManager.GameStage.WaitToStart;
+            _secondsToWait = 5f;
         }
         else if(GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
         {
@@ -74,7 +77,12 @@ public class VirusManager : MonoBehaviour
                 SoundManager.Instance.PlaySound("Music", false);
                 _playMusic = false;
             }
-            VirusUpdate();
+
+           
+            
+                VirusUpdate();
+            
+                    
         }
         
     }
@@ -242,14 +250,20 @@ public class VirusManager : MonoBehaviour
         if (_windowPopUpSeconds > _maxWindowPopUp)
         {
             if (_maxWindowPopUp == 0f)
-                _maxWindowPopUp = 3f;   // After first window appears, the next ones will appear after short times
-
-            int indexWindow = Random.Range(0, _windowPopUps.Count - 1);
-            GameObject windowToPopUp = _windowPopUps[indexWindow];
-            int indexPosition = Random.Range(0, _windowPositions.Count -1);
-            GameObject position = _windowPositions[indexPosition];
-            InstantiateWindow(windowToPopUp, position.transform.position, position.transform.rotation);
-            _windowPopUpSeconds = 0;
+            {
+                InstantiateWindow(_storyPrefab, Vector3.zero, Quaternion.identity);
+                _maxWindowPopUp = 8f;   // After first window appears, the next ones will appear after short times
+            }
+            else
+            {
+                int indexWindow = Random.Range(0, _windowPopUps.Count - 1);
+                GameObject windowToPopUp = _windowPopUps[indexWindow];
+                int indexPosition = Random.Range(0, _windowPositions.Count - 1);
+                GameObject position = _windowPositions[indexPosition];
+                InstantiateWindow(windowToPopUp, position.transform.position, position.transform.rotation);
+                _windowPopUpSeconds = 0;
+            }
+               
         }
     }
 

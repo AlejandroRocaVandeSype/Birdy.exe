@@ -8,35 +8,69 @@ public class WindowPassword : WindowBasic
 {
     [SerializeField] private InputField _passwordField;
     [SerializeField] private string _password;
-    private string _correctPasswordUser = "123abc456abc";       // User password
-    private string _correctPasswordAdmin = "GoodieGarden1943";  // Admin password
+    private string _correctPasswordUser = "123abc";       // User password
+    private string _correctPasswordAdmin = "Garden1943";  // Admin password
     bool _firstPassword = true;
 
     [SerializeField] private GameObject _storyPrefab = null;
+
+    [SerializeField] private Sprite _correctPasswordSprite = null;
+    [SerializeField] private Sprite _wrongPasswordSprite = null;
 
     public void CheckPassword()
     {
         if (_passwordField != null)
         {
             
-                if (_passwordField.text == _password  && _password == _correctPasswordUser)
+                if (_passwordField.text == _password)
                 {
-                    // Correct password
-                    CloseWindow();
-                    GameManager.Instance.VirusManager.Stage = VirusStage.AntivirusStart;
+                    if(_password == _correctPasswordUser)
+                     {
+                        _base.GetComponent<SpriteRenderer>().sprite = _correctPasswordSprite;
+                        // Correct password
+                        CloseWindow();
+                        GameManager.Instance.VirusManager.Stage = VirusStage.AntivirusStart;
 
-                    Instantiate(_storyPrefab, GameManager.Instance.StorySpawnPosition.transform.position, Quaternion.identity);
-                _firstPassword = false;
+                        Instantiate(_storyPrefab, GameManager.Instance.StorySpawnPosition.transform.position, Quaternion.identity);
+                        _firstPassword = false;
+                     }
+                    else
+                    {
+                        // Wrong password
+                        _base.GetComponent<SpriteRenderer>().sprite = _wrongPasswordSprite;
+                     }
+                   
+                    
+                }
+                else
+                {
+                    // Wrong password
+                    _base.GetComponent<SpriteRenderer>().sprite = _wrongPasswordSprite;
                 }
 
 
-            
-                if (_passwordField.text == _password && _password == _correctPasswordAdmin)
+
+
+            if (_passwordField.text == _password)
                 {
-                    // Correct password
-                    CloseWindow();
-                    GameManager.Instance.VirusManager.Stage = VirusStage.AntivirusStart;
+                   if(_password == _correctPasswordAdmin)
+                    {
+                        // Correct password
+                        CloseWindow();
+                        GameManager.Instance.VirusManager.Stage = VirusStage.AntivirusStart;
+                    }    
+                   else
+                    {
+                    // Wrong password
+                    _base.GetComponent<SpriteRenderer>().sprite = _wrongPasswordSprite;
+                    }
+                    
                 }
+            else
+            {
+                // Wrong password
+                _base.GetComponent<SpriteRenderer>().sprite = _wrongPasswordSprite;
+            }
             
 
         }

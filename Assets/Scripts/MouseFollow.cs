@@ -9,10 +9,14 @@ public class MouseFollow : MonoBehaviour
     private Vector3 _screenPosition;
     private Vector2 _screenBounds;
     [SerializeField] private GameObject _mouseGO;
+    [SerializeField] private Sprite _mouseNoHit;
+    [SerializeField] private Sprite _mouseHit;
+    [SerializeField] private GameObject _mouseAntivirus;
+    private Sprite _currentSprite;
 
     // Sprite swap/color when hit
-    private float _maxWait = 2f;
-    private float _swapTime = 0.3f;
+    private float _maxWait = 3f;
+    private float _swapTime = 0.2f;
     private float _seconds = 0f;
     private float _maxSeconds = 0f;
     private Color _currentColor = Color.red;
@@ -31,6 +35,8 @@ public class MouseFollow : MonoBehaviour
        Cursor.visible = false;         // Don't show mouse cursor
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         _gameManager = GameManager.Instance;
+
+        _currentSprite = _mouseHit;
     }
 
     // Update is called once per frame
@@ -41,6 +47,11 @@ public class MouseFollow : MonoBehaviour
         if(_wasHit)
         {
             InvincibilityUpdate();
+            _mouseAntivirus.SetActive(true);
+        }
+        else
+        {
+            _mouseAntivirus.SetActive(false);
         }
     }
 
@@ -88,14 +99,17 @@ public class MouseFollow : MonoBehaviour
             if (_seconds > _swapTime)
             {
                 _seconds = 0f;
-                _mouseGO.GetComponent<SpriteRenderer>().color = _currentColor;
+               // _mouseGO.GetComponent<SpriteRenderer>().color = _currentColor;
+                _mouseGO.GetComponent<SpriteRenderer>().sprite = _currentSprite;
                 if (_currentColor == Color.red)
                 {
                     _currentColor = Color.white;
+                    _currentSprite = _mouseHit;
                 }
                 else
                 {
                     _currentColor = Color.red;
+                    _currentSprite = _mouseNoHit;
                 }
             }
         }
@@ -105,7 +119,8 @@ public class MouseFollow : MonoBehaviour
             _seconds = 0f;
             _maxSeconds = 0f;
             _wasHit = false;
-            _mouseGO.GetComponent<SpriteRenderer>().color = Color.white;
+            //_mouseGO.GetComponent<SpriteRenderer>().color = Color.white;
+            _currentSprite = _mouseNoHit;
             _currentColor = Color.red;
         }
     }
