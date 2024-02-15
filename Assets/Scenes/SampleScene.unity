@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -192,6 +196,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -324,6 +332,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -844,6 +856,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -992,6 +1008,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1054,6 +1074,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1389,6 +1413,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1607,6 +1635,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -1851,6 +1883,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1973,6 +2009,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2035,6 +2075,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -2097,6 +2141,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2159,6 +2207,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2860,6 +2912,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130874588}
     m_Modifications:
+    - target: {fileID: 3075851257223862980, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
+      propertyPath: _virusTemplate
+      value: 
+      objectReference: {fileID: 489401472227209108, guid: 70ccb0830d736f941a0cff0f5899a8a7, type: 3}
     - target: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
       propertyPath: m_RootOrder
       value: 0
