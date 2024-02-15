@@ -10,6 +10,11 @@ public class GameStarter : MonoBehaviour
     public float cinematicTime = 2f;
     public Animator fade;
 
+    public void Start()
+    {
+        SoundManager.Instance.PlaySound("Windows_Start", false);
+    }
+
 
     // Update is called once per frame
     void Update()
