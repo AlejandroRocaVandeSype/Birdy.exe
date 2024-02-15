@@ -864,7 +864,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -907,8 +907,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: -0.0072004343, y: -0.0003281075, z: 0.000077154305, w: -0.999974}
-  m_LocalPosition: {x: -0.035181504, y: -0.1592153, z: -7.431896}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 0.02, z: -7.431896}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1219,6 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b8481ad5028ab4cb0cb85fe2af672b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _storyPrefab: {fileID: 0}
   _windowErrorTemplate: {fileID: 4981752889540123457, guid: e9417f039df773e48b509cfa0251586f, type: 3}
   _windowPasswordTemplateUser: {fileID: 6598970099913571650, guid: 8e27504f47059224894ad31287f3fe8d, type: 3}
   _windowPasswordTemplateAdmin: {fileID: 1395680838305753084, guid: c41ca9e43c724bd47a9605c728aa67c4, type: 3}
@@ -2690,7 +2691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7679086225706408080, guid: 25f8e567b964ead40af7caeea81567c6, type: 3}
       propertyPath: m_Range
-      value: 48
+      value: 131.3
       objectReference: {fileID: 0}
     - target: {fileID: 7679086225706408080, guid: 25f8e567b964ead40af7caeea81567c6, type: 3}
       propertyPath: m_Color.b
@@ -2706,7 +2707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7679086225706408080, guid: 25f8e567b964ead40af7caeea81567c6, type: 3}
       propertyPath: m_Intensity
-      value: 112.1
+      value: 355.8
       objectReference: {fileID: 0}
     - target: {fileID: 7679086225706408080, guid: 25f8e567b964ead40af7caeea81567c6, type: 3}
       propertyPath: m_SpotAngle
@@ -2714,11 +2715,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7679086225706408080, guid: 25f8e567b964ead40af7caeea81567c6, type: 3}
       propertyPath: m_InnerSpotAngle
-      value: 96.6978
+      value: 96.697815
       objectReference: {fileID: 0}
     - target: {fileID: 7679086225706408081, guid: 25f8e567b964ead40af7caeea81567c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13
+      value: 12.9
       objectReference: {fileID: 0}
     - target: {fileID: 7679086225706408081, guid: 25f8e567b964ead40af7caeea81567c6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2869,7 +2870,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124304763}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
