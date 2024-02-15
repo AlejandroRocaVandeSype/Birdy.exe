@@ -940,29 +940,36 @@ MonoBehaviour:
     m_Clip: {fileID: 8300000, guid: 01e7ab0bf01d2a0489f177d58c4b94ba, type: 3}
     m_Loop: 0
     m_OnAwake: 0
-    m_Volume: 0.706
-    m_Pitch: 0
+    m_Volume: 1
+    m_Pitch: 1
     m_Source: {fileID: 0}
-  - m_Name: 
-    m_Clip: {fileID: 0}
+  - m_Name: Windows_Start
+    m_Clip: {fileID: 8300000, guid: 24585ecc6022b0f42b9752ea9fdd02c9, type: 3}
     m_Loop: 0
     m_OnAwake: 0
-    m_Volume: 0
-    m_Pitch: 0
+    m_Volume: 1
+    m_Pitch: 1
     m_Source: {fileID: 0}
-  - m_Name: 
-    m_Clip: {fileID: 0}
+  - m_Name: EnemyCatch
+    m_Clip: {fileID: 8300000, guid: 567e899c1f1fe344e93dcd43630a0229, type: 3}
     m_Loop: 0
     m_OnAwake: 0
-    m_Volume: 0
-    m_Pitch: 0
+    m_Volume: 1
+    m_Pitch: 1
     m_Source: {fileID: 0}
-  - m_Name: 
-    m_Clip: {fileID: 0}
+  - m_Name: WindowPopUp
+    m_Clip: {fileID: 8300000, guid: 158d99bdab4a83c4bbae34d915d61542, type: 3}
     m_Loop: 0
     m_OnAwake: 0
-    m_Volume: 0
-    m_Pitch: 0
+    m_Volume: 1
+    m_Pitch: 1
+    m_Source: {fileID: 0}
+  - m_Name: Music
+    m_Clip: {fileID: 8300000, guid: 072fa5123f0edd540a3f82db74ff86a3, type: 3}
+    m_Loop: 1
+    m_OnAwake: 0
+    m_Volume: 1
+    m_Pitch: 1
     m_Source: {fileID: 0}
 --- !u!4 &624504039
 Transform:
@@ -1372,7 +1379,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &973323859
 PrefabInstance:

@@ -86,6 +86,7 @@ public class VirtusBehaviour : MonoBehaviour
     public void Kill(bool lastKill = false)
     {
         Destroy(gameObject);
+        SoundManager.Instance.PlaySound("EnemyCatch", false);
 
         if(lastKill == false)
             GameManager.Instance.SpawnManager.SpawnNewWave();

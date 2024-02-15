@@ -6,7 +6,12 @@ using UnityEngine.EventSystems;
 
 public class WindowPopUp : WindowBasic
 {
-  
+
+    public void Start()
+    {
+        SoundManager.Instance.PlaySound("WindowPopUp", false);
+    }
+
     // QuickFix -> So OnClick function from button can be used
     public void Close()
     {

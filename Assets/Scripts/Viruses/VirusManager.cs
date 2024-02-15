@@ -46,6 +46,7 @@ public class VirusManager : MonoBehaviour
     private int _limitAntivirus = 4;
     private int _currentIndexAntivirus = 1;
     bool _firstTimeAntivirus = true;
+    bool _doOnce = false;
 
 
     // Start is called before the first frame update
@@ -291,11 +292,17 @@ public class VirusManager : MonoBehaviour
                     count++;
                     if(count == _windowsInGame.Count)
                     {
-                        _stage = VirusStage.FirstVirus;
+                        if(_doOnce == false)
+                        {
+                            Debug.Log("Hola");
+                            _stage = VirusStage.FirstVirus;
 
-                        GameManager.Instance.SpawnManager.KillAll();
-                  
-                        Instantiate(_deathAnimationTemplate, Vector3.zero, Quaternion.identity);  
+                            GameManager.Instance.SpawnManager.KillAll();
+
+                            Instantiate(_deathAnimationTemplate, Vector3.zero, Quaternion.identity);
+                            _doOnce = true;
+                        }
+                       
                         //GameManager.Instance.gameStage = GameManager.GameStage.WinScreen;
                     }
                 }
