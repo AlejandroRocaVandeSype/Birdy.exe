@@ -899,6 +899,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3735486589112719946, guid: cce6e49636694f345b501c87352ac0dc, type: 3}
   m_PrefabInstance: {fileID: 563845029}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &624504037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 624504039}
+  - component: {fileID: 624504038}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &624504038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624504037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6d19105f81a794e8d980dd73bea20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Sounds:
+  - m_Name: 
+    m_Clip: {fileID: 0}
+    m_Loop: 0
+    m_OnAwake: 0
+    m_Volume: 0
+    m_Pitch: 0
+    m_Source: {fileID: 0}
+  - m_Name: ErrorSound
+    m_Clip: {fileID: 8300000, guid: 01e7ab0bf01d2a0489f177d58c4b94ba, type: 3}
+    m_Loop: 0
+    m_OnAwake: 0
+    m_Volume: 0.706
+    m_Pitch: 0
+    m_Source: {fileID: 0}
+  - m_Name: 
+    m_Clip: {fileID: 0}
+    m_Loop: 0
+    m_OnAwake: 0
+    m_Volume: 0
+    m_Pitch: 0
+    m_Source: {fileID: 0}
+  - m_Name: 
+    m_Clip: {fileID: 0}
+    m_Loop: 0
+    m_OnAwake: 0
+    m_Volume: 0
+    m_Pitch: 0
+    m_Source: {fileID: 0}
+  - m_Name: 
+    m_Clip: {fileID: 0}
+    m_Loop: 0
+    m_OnAwake: 0
+    m_Volume: 0
+    m_Pitch: 0
+    m_Source: {fileID: 0}
+--- !u!4 &624504039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624504037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8793947, y: -1.5597091, z: -2.6356862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &630204169
 PrefabInstance:
   m_ObjectHideFlags: 0
