@@ -1236,6 +1236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b8481ad5028ab4cb0cb85fe2af672b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _storyPrefab: {fileID: 0}
   _windowErrorTemplate: {fileID: 4981752889540123457, guid: e9417f039df773e48b509cfa0251586f, type: 3}
   _windowPasswordTemplateUser: {fileID: 6598970099913571650, guid: 8e27504f47059224894ad31287f3fe8d, type: 3}
   _windowPasswordTemplateAdmin: {fileID: 1395680838305753084, guid: 16dca1a93ab9a0041a0701b6f84dfad7, type: 3}
