@@ -1073,7 +1073,7 @@ MonoBehaviour:
     m_Clip: {fileID: 8300000, guid: 3c5eb441d9d789342a3addee0543a521, type: 3}
     m_Loop: 0
     m_OnAwake: 0
-    m_Volume: 0.4
+    m_Volume: 0.2
     m_Pitch: 1
     m_Source: {fileID: 0}
 --- !u!4 &624504039

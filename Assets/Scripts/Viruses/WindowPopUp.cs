@@ -22,4 +22,11 @@ public class WindowPopUp : WindowBasic
     {
         Destroy(gameObject);
     }
+
+    public void SpawnButton()
+    {
+        Vector3 virusSpawnPos = transform.position;
+        virusSpawnPos.x += 2f;
+        GameManager.Instance.SpawnManager.Spawn(virusSpawnPos);
+    }
 }
