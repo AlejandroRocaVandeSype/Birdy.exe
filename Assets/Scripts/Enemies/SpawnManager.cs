@@ -67,6 +67,11 @@ public class SpawnManager : MonoBehaviour
         _hasToSpawn = true;
     }
 
+    public void Spawn(Vector3 position)
+    {
+        _viruses.Add(Instantiate(_spawnPoints[0].VirusTemplate(), position, transform.rotation));
+    }
+
 
     public void KillAll()
     {

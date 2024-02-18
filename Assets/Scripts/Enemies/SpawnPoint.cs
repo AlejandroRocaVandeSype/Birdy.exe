@@ -28,4 +28,9 @@ public class SpawnPoint : MonoBehaviour
         return Instantiate(_virusTemplate, transform.position, transform.rotation);
     }
 
+    public GameObject VirusTemplate()
+    { 
+        return _virusTemplate; 
+    }
+
 }
