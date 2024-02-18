@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class VirusManager : MonoBehaviour
 {
-    public enum VirusStage { Wait, FirstVirus, WindowPopUps, MultipleErrors, PasswordPhase, 
+    public enum VirusStage { Wait, FirstVirus, LaunchingAntivirus, MultipleErrors, PasswordPhase, 
         AntivirusStart,DestroyWindows, WaitSeconds, VirusEnd };
     private VirusStage _stage;
 
     [SerializeField] private GameObject _storyPrefab = null;
+    [SerializeField] private GameObject _storySpawnPoint = null;
 
     [SerializeField] private GameObject _windowErrorTemplate = null;
     [SerializeField] private GameObject _windowPasswordTemplateUser = null;
@@ -34,6 +35,12 @@ public class VirusManager : MonoBehaviour
 
     [SerializeField] private GameObject _deathAnimationTemplate = null;
 
+    [SerializeField] private List <GameObject> _antivirusLaunchingImgs = new List<GameObject> {};
+    private float _currentSecAntivirus = 0f;
+    private int _currentImageAntivirus = -1;
+    private float timePerImage = 0f;
+
+    // Time to the Password Window appear
     private float _secondsForPassword = 30f;
     private float _currentSecondsPass = 0f;
 
@@ -44,7 +51,10 @@ public class VirusManager : MonoBehaviour
 
     private float _antivirusMaxSeconds = 0f;
     private float _currentSecondsAntivirus = 0f;
+
     [SerializeField] private List<GameObject> _antivirusImages = new List<GameObject>();
+
+
     private int _limitAntivirus = 4;
     private int _currentIndexAntivirus = 1;
     bool _firstTimeAntivirus = true;
@@ -52,7 +62,6 @@ public class VirusManager : MonoBehaviour
 
     bool _playMusic = true;
 
-    bool _firstWait = true;
     // Start is called before the first frame update
     void Awake()
     {
@@ -89,6 +98,7 @@ public class VirusManager : MonoBehaviour
 
     public void VirusUpdate()
     {
+
         // Always popUp Windows 
         if ( _stage != VirusStage.FirstVirus && _stage != VirusStage.VirusEnd
             && _stage != VirusStage.MultipleErrors && _stage != VirusStage.DestroyWindows
@@ -99,17 +109,9 @@ public class VirusManager : MonoBehaviour
 
         switch (_stage)
         {
-            case VirusStage.WindowPopUps:
-                {
-                    // Wait a few seconds before changing stage to Password
-                    _currentSecondsPass += Time.deltaTime;
-                    if(_currentSecondsPass > _secondsForPassword)
-                    {
-                        _currentSecondsPass = 0;
-                        _stage = VirusStage.PasswordPhase;
-                    }
-                    break;
-                }
+            case VirusStage.LaunchingAntivirus:
+                LaunchingAntivirus(_secondsForPassword);
+                break;
             case VirusStage.MultipleErrors:
                 WindowsErrorFase();
                 break;
@@ -142,6 +144,37 @@ public class VirusManager : MonoBehaviour
 
 
         }
+    }
+
+
+    private void LaunchingAntivirus(float totalTime)
+    {
+        // First image will inmediatly appear
+
+        _currentSecAntivirus += Time.deltaTime;
+        if(_currentSecAntivirus > timePerImage)
+        {
+            _currentSecAntivirus = 0f;
+            _currentImageAntivirus++;
+
+            int previousImag = _currentImageAntivirus - 1;
+            if (previousImag >= 0)
+            {
+                _antivirusLaunchingImgs[previousImag].SetActive(false);
+            }
+
+            if (_currentImageAntivirus < _antivirusLaunchingImgs.Count)
+            {
+                _antivirusLaunchingImgs[_currentImageAntivirus].SetActive(true);
+            }
+            else
+            {
+                _stage = VirusStage.PasswordPhase;  // Show password
+            }
+
+        }
+
+        timePerImage = totalTime / _antivirusLaunchingImgs.Count - 1;
     }
 
     private void StartAntivirus()
@@ -251,7 +284,7 @@ public class VirusManager : MonoBehaviour
         {
             if (_maxWindowPopUp == 0f)
             {
-                InstantiateWindow(_storyPrefab, Vector3.zero, Quaternion.identity);
+                InstantiateWindow(_storyPrefab, _storySpawnPoint.transform.position, Quaternion.identity);
                 _maxWindowPopUp = 8f;   // After first window appears, the next ones will appear after short times
             }
             else
@@ -374,7 +407,7 @@ public class VirusManager : MonoBehaviour
     {
         if(_stage == VirusStage.FirstVirus)
         {
-            _stage = VirusStage.WindowPopUps;
+            _stage = VirusStage.LaunchingAntivirus;
         }
     }
 

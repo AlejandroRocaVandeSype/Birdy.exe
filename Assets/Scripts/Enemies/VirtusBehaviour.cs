@@ -11,6 +11,10 @@ public class VirtusBehaviour : MonoBehaviour
     private NavMeshAgent _agent;
     private float _startSpeed;
     private float _startAccel;
+    [SerializeField] private float _maxAccel;
+    [SerializeField] private float _maxSpeed;
+    private float _incAccel = 0f;
+    private float _incSpeed = 0f;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,6 +28,8 @@ public class VirtusBehaviour : MonoBehaviour
 
         _startSpeed = _agent.speed;
         _startAccel = _agent.acceleration;
+        _maxSpeed = 20f;
+        _maxAccel = 100f;
 
     }
 
@@ -44,8 +50,17 @@ public class VirtusBehaviour : MonoBehaviour
         if(GameManager.Instance.VirusManager.Stage == VirusManager.VirusStage.FirstVirus)
         {
             // First enemy will move faster
-            _agent.speed = _startSpeed * 1;
-            _agent.acceleration = _startAccel * 1;
+            if (_agent.acceleration < _maxAccel)
+            {
+                _incAccel += 0.005f;
+                _agent.acceleration = _startAccel + _incAccel;
+            }
+
+            if(_agent.speed < _maxSpeed)
+            {
+                _incSpeed += 0.002f;
+                _agent.speed = _startSpeed + _incSpeed;
+            }
         }
         else
         {
