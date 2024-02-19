@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3582226039433245553}
   - component: {fileID: 4374323897751936373}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MouseVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 5e8335826cabeaa4a93a689e779c5011, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4408431884034076991}
   - component: {fileID: 5999894676083663639}
   m_Layer: 8
-  m_Name: Square
+  m_Name: antivirusSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,8 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4231022802989685383}
   - component: {fileID: 6320812175594416718}
-  - component: {fileID: 9117501972447805732}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Mouse
   m_TagString: Friendly
   m_Icon: {fileID: 0}
@@ -210,23 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457d45acffd46d4448cb16be0a51e7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseGO: {fileID: 961808022390133130}
+  _mouseGObject: {fileID: 961808022390133130}
   _mouseNoHit: {fileID: 21300000, guid: 5e8335826cabeaa4a93a689e779c5011, type: 3}
-  _mouseHit: {fileID: 21300000, guid: 73ae3c7f43213bd46b25f20d43eb52dd, type: 3}
-  _mouseAntivirus: {fileID: 4224157232199879029}
---- !u!58 &9117501972447805732
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4231022802989685380}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.1
+  _mouseHit: {fileID: 21300000, guid: 7566f56f0be28d347b521790c7d95598, type: 3}
+  _invencibilitySprite: {fileID: 4224157232199879029}
+  _hitSprite: {fileID: 0}

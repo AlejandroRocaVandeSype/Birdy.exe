@@ -1,30 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class VirtusBehaviour : MonoBehaviour
 {
-   
-    private GameObject _target;
+
+    private GameManager _gameManager = null;
+
+    private GameObject _target;                     // Target to follow ( Player mouse )
     private NavMeshAgent _agent;
     private float _startSpeed;
     private float _startAccel;
+
+    // Adjust these to setup virus movement
     [SerializeField] private float _maxAccel;
     [SerializeField] private float _maxSpeed;
     private float _incAccel = 0f;
     private float _incSpeed = 0f;
+    private const float TARGET_RANGE = 0.3f;
 
     // Start is called before the first frame update
     void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _agent.updateRotation = false;
-        
-        _agent.updateUpAxis = false;
-
-        _target = FindObjectOfType<MouseFollow>().gameObject;
+        _agent.updateRotation = false;  
+        _agent.updateUpAxis = false;                    // Needed it for 2DNavMesh to properly work
 
         _startSpeed = _agent.speed;
         _startAccel = _agent.acceleration;
@@ -33,34 +34,29 @@ public class VirtusBehaviour : MonoBehaviour
 
     }
 
-   
+    private void Start()
+    {
+        _target = FindObjectOfType<MouseFollow>().gameObject;
+        _gameManager = GameManager.Instance;
+    }
 
-    // Update is called once per frame
+
     void Update()
     {
-
-        if (GameManager.Instance.gameStage == GameManager.GameStage.Wait)
+        if (_gameManager == null || _target == null)
             return;
 
-        if (GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
-        {
+        if (_gameManager.gameStage == GameManager.GameStage.Wait)
+            return;
+
+        if (_gameManager.gameStage == GameManager.GameStage.Gameplay)
             _agent.SetDestination(_target.transform.position);
-        }
+        
 
-        if(GameManager.Instance.VirusManager.Stage == VirusManager.VirusStage.FirstVirus)
+        if(_gameManager.VirusManager.Stage == VirusManager.VirusStage.FirstVirus)
         {
-            // First enemy will move faster
-            if (_agent.acceleration < _maxAccel)
-            {
-                _incAccel += 0.005f;
-                _agent.acceleration = _startAccel + _incAccel;
-            }
-
-            if(_agent.speed < _maxSpeed)
-            {
-                _incSpeed += 0.002f;
-                _agent.speed = _startSpeed + _incSpeed;
-            }
+            // First virus will gradually increase its speed 
+            UpdateFasterVirus();
         }
         else
         {
@@ -69,34 +65,42 @@ public class VirtusBehaviour : MonoBehaviour
             _agent.acceleration = _startAccel;
         }
 
-        if (Vector3.Distance(transform.position, _target.transform.position) < 0.3f)
-        {
-            if (!_target.GetComponent<MouseFollow>().WasHit)
-            {
-                Kill();
-                _target.GetComponent<MouseFollow>().PlayerHit();
-            }
-
-        }
+        UpdateMovement();
 
     }
 
 
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void UpdateFasterVirus()
     {
-        if(collision.collider.tag == "Friendly")
+        
+        if (_agent.acceleration < _maxAccel)
         {
-            MouseFollow mouse = collision.gameObject.GetComponent<MouseFollow>();
-            if (mouse != null && !mouse.WasHit)
-            {
-                Kill();
-            }
-            
+            _incAccel += 0.005f;
+            _agent.acceleration = _startAccel + _incAccel;
+        }
+
+        if (_agent.speed < _maxSpeed)
+        {
+            _incSpeed += 0.002f;
+            _agent.speed = _startSpeed + _incSpeed;
         }
     }
 
+
+    private void UpdateMovement()
+    {
+        // Use this instead of collision boxes so raycasting properly works
+        if (Vector3.Distance(transform.position, _target.transform.position) < TARGET_RANGE)
+        {
+            MouseFollow player = _target.GetComponent<MouseFollow>();
+            if (!player.WasHit)
+            {
+                Kill();
+                player.PlayerHit();
+            }
+
+        }
+    }
 
     public void Kill(bool lastKill = false)
     {
@@ -104,7 +108,7 @@ public class VirtusBehaviour : MonoBehaviour
         SoundManager.Instance.PlaySound("EnemyCatch", false);
 
         if(lastKill == false)
-            GameManager.Instance.SpawnManager.SpawnNewWave();
+            GameManager.Instance.SpawnManager.HasToSpawn = true;
 
     }
 

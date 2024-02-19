@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
@@ -25,6 +23,9 @@ public class SpawnPoint : MonoBehaviour
 
     public GameObject Spawn()
     {
+        if (_virusTemplate == null)
+            return null;
+
         return Instantiate(_virusTemplate, transform.position, transform.rotation);
     }
 

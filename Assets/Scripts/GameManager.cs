@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -72,12 +70,6 @@ public class GameManager : MonoBehaviour
         _gameStage = GameStage.Start;
     }
 
-
-
-    public void Start()
-    {
-        
-    }
     public void Update()
     {
         if(_gameStage == GameStage.GameOver)

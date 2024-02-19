@@ -9,10 +9,6 @@ public class WindowBasic : MonoBehaviour, IDragHandler
     [SerializeField] protected GameObject _base;
     [SerializeField] protected GameObject _closeButton;
 
-    private Vector3 _dragOffset;
-
-
-
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -27,7 +23,6 @@ public class WindowBasic : MonoBehaviour, IDragHandler
     protected virtual void CloseWindow()
     {
         Destroy(gameObject);
-
     }
 
 

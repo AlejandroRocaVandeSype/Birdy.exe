@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ public class SpawnManager : MonoBehaviour
     private int _amountToSpawn = 1;             // Spawn only one enemy at start
   
    private List<GameObject> _viruses = new List<GameObject>();
+
     public void RegisterSpawnPoint(SpawnPoint spawPoint)
     {
        AddSpawnPoint(ref _spawnPoints, spawPoint);            
@@ -43,8 +43,7 @@ public class SpawnManager : MonoBehaviour
             {
                 for (int spawnCount = 0; spawnCount < _amountToSpawn; ++spawnCount)
                 {
-
-                    int spawnIdx = Random.Range(0, _spawnPoints.Count - 1);
+                    int spawnIdx = GetRandomSpawnPoint();
                     _viruses.Add(_spawnPoints[spawnIdx].Spawn());
                 }
 
@@ -58,20 +57,26 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnOne()
     {
-        int spawnIdx = Random.Range(0, _spawnPoints.Count - 1);
+        int spawnIdx = GetRandomSpawnPoint();
        _viruses.Add( _spawnPoints[spawnIdx].Spawn());
     }
 
-    public void SpawnNewWave()
+    public bool HasToSpawn
     {
-        _hasToSpawn = true;
+        set { _hasToSpawn = value; }
     }
 
+    // Spawn a virtus in a certain position
     public void Spawn(Vector3 position)
     {
         _viruses.Add(Instantiate(_spawnPoints[0].VirusTemplate(), position, transform.rotation));
     }
 
+
+    private int GetRandomSpawnPoint()
+    {
+        return Random.Range(0, _spawnPoints.Count - 1);
+    }
 
     public void KillAll()
     {

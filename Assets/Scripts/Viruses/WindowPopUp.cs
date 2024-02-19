@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
+
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class WindowPopUp : WindowBasic
 {
@@ -23,6 +20,7 @@ public class WindowPopUp : WindowBasic
         Destroy(gameObject);
     }
 
+    // Spawn a virus next to the button
     public void SpawnButton()
     {
         Vector3 virusSpawnPos = transform.position;

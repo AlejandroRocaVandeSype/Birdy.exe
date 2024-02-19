@@ -1,94 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class MouseFollow : MonoBehaviour
 {
 
+    // Mouse coord will be converted from screen to world position
     private Vector3 _worldPosition;
     private Vector3 _screenPosition;
-    private Vector2 _screenBounds;
-    [SerializeField] private GameObject _mouseGO;
+
+    private Vector2 _screenBounds;          // Limits for the mouse
+    private Vector2 _spriteSize;
+
+
+    [SerializeField] private GameObject _mouseGObject;
     [SerializeField] private Sprite _mouseNoHit;
     [SerializeField] private Sprite _mouseHit;
-    [SerializeField] private GameObject _mouseAntivirus;
-    [SerializeField] private GameObject _damageImage;
+    [SerializeField] private GameObject _invencibilitySprite;
+    [SerializeField] private GameObject _hitSprite;
     private Sprite _currentSprite;
 
-    // Sprite swap/color when hit
-    private float _maxWait = 2.5f;
-    private float _swapTime = 0.2f;
-    private float _seconds = 0f;
-    private float _maxSeconds = 0f;
-    private Color _currentColor = Color.red;
+    // Sprite swap when hit
+    private float _invencibilityDuration = 2.5f;
+    private float _swapDuration = 0.1f;
+    private float secondsSwap = 0f;
+    private float _invencibilitySeconds = 0f;
+    private Color _currentColor = Color.red;                // Used to check which sprite is currently being rendered
     private bool _wasHit = false;
 
-    private const float BORDERS = 0.18f;
-
-
-    private const string ENEMY_TAG = "Enemy";
     private GameManager _gameManager = null;
 
 
     private float _maxDamageScreen = 0.1f;
     private float _secondsDamageScreen = 0f;
     bool _active = false;
-    bool _done = false;
-    int _count = 1;
+    bool _wasHitRendered = false;                           // Only render the damage overlay if it wasn't already
 
-    // Start is called before the first frame update
-    void Start()
+
+    public void Awake()
     {
-       Cursor.visible = false;         // Don't show mouse cursor
+        Cursor.visible = false;              // Hide the real cursor
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        _gameManager = GameManager.Instance;
 
         _currentSprite = _mouseHit;
+    }
+
+    void Start()
+    {    
+        _gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetMousePos();
+        UpdateMousePos();
 
         if(_wasHit)
         {
-            InvincibilityUpdate();
-            _mouseAntivirus.SetActive(true);
-
-            if(_done == false)
-            {
-                _secondsDamageScreen += Time.deltaTime;
-                if (_secondsDamageScreen > _maxDamageScreen)
-                {
-
-                    _damageImage.SetActive(!_active);
-                    _active = !_active;
-                    _secondsDamageScreen = 0f;
-
-                    if(_active == false)
-                    {
-                        _count++;
-                        if(_count > 1)
-                        {
-                            _done = true;
-                            _count = 1;
-                        }                    
-                    }
-
-                }
-            }
+            UpdateInvencibility();
+            UpdateDamageSprite();
             
         }
         else
         {
-            _mouseAntivirus.SetActive(false);
-            _done = false;
+            _invencibilitySprite.SetActive(false);
+            _wasHitRendered = false;
             _active = false;
         }
     }
 
-    private void GetMousePos()
+    private void UpdateMousePos()
     {
         _screenPosition = Input.mousePosition;
         _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
@@ -96,44 +78,35 @@ public class MouseFollow : MonoBehaviour
         Vector3 position = _worldPosition;
         position.z = 0;
 
-        position = BoundaryCheck(position);
+        _spriteSize.x = _currentSprite.bounds.size.x;
+        _spriteSize.y = _currentSprite.bounds.size.y/2.5f;
 
+        BoundaryCheck(ref position);
+
+        // Update Gameobject's position
         transform.position = position;
     }
-    private Vector3 BoundaryCheck(Vector3 position)
+    private void BoundaryCheck(ref Vector3 position)
     {
+        float minValue = 0 - _screenBounds.x + _spriteSize.x;
+        float maxValue = _screenBounds.x - _spriteSize.x;
+        position.x = Mathf.Clamp(position.x, minValue, maxValue);
 
-        if (position.x > _screenBounds.x - BORDERS - 0.7f)
-        {
-            position.x = _screenBounds.x - BORDERS - 0.7f;
-        }
-        else if (position.x < 0 - _screenBounds.x + BORDERS + 0.7f)
-        {
-            position.x = 0 - _screenBounds.x + BORDERS + 0.7f;
-        }
-
-        if (position.y > _screenBounds.y - BORDERS)
-        {
-            position.y = _screenBounds.y - BORDERS;
-        }
-        else if (position.y < 0 - _screenBounds.y + BORDERS)
-        {
-            position.y = 0 - _screenBounds.y + BORDERS;
-        }
-        return position;
+        minValue = 0 - _screenBounds.y + _spriteSize.y;
+        maxValue = _screenBounds.y - _spriteSize.y;
+        position.y = Mathf.Clamp(position.y, minValue, maxValue);
     }
 
-    private void InvincibilityUpdate()
+    private void UpdateInvencibility()
     {
-        _seconds += Time.deltaTime;
-        _maxSeconds += Time.deltaTime;
-        if (_maxSeconds < _maxWait)
+        secondsSwap += Time.deltaTime;
+        _invencibilitySeconds += Time.deltaTime;
+        if (_invencibilitySeconds < _invencibilityDuration)
         {
-            if (_seconds > _swapTime)
+            if (secondsSwap > _swapDuration)
             {
-                _seconds = 0f;
-               // _mouseGO.GetComponent<SpriteRenderer>().color = _currentColor;
-                _mouseGO.GetComponent<SpriteRenderer>().sprite = _currentSprite;
+                secondsSwap = 0f;
+                _mouseGObject.GetComponent<SpriteRenderer>().sprite = _currentSprite;
                 if (_currentColor == Color.red)
                 {
                     _currentColor = Color.white;
@@ -149,29 +122,45 @@ public class MouseFollow : MonoBehaviour
         else
         {
             // Finish max time
-            _seconds = 0f;
-            _maxSeconds = 0f;
+            secondsSwap = 0f;
+            _invencibilitySeconds = 0f;
             _wasHit = false;
-            //_mouseGO.GetComponent<SpriteRenderer>().color = Color.white;
             _currentSprite = _mouseNoHit;
             _currentColor = Color.red;
         }
+
+        _invencibilitySprite.SetActive(true);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void UpdateDamageSprite()
     {
-        if (collision.collider.tag == ENEMY_TAG && !_wasHit)
-        {
+         if(_wasHitRendered == false)
+         {
+            _secondsDamageScreen += Time.deltaTime;
+            if (_secondsDamageScreen > _maxDamageScreen)
+            {
 
-            PlayerHit();
-        }
+                _hitSprite.SetActive(!_active);
+                _active = !_active;
+                _secondsDamageScreen = 0f;
+
+                if(_active == false)
+                {
+                    _wasHitRendered = true;                                         
+                }
+            }
+         }
     }
 
     public void PlayerHit()
     {
         _wasHit = true;
-        _mouseGO.GetComponent<SpriteRenderer>().color = _currentColor;
+        _mouseGObject.GetComponent<SpriteRenderer>().color = _currentColor;
         _currentColor = Color.white;
+
+        if (_gameManager == null)
+            return;
+
         _gameManager.VirusManager.PlayerHit();      // Sent a notifaction that the player was hit
         _gameManager.Storage.IncreaseCorruption();
     }
@@ -179,6 +168,5 @@ public class MouseFollow : MonoBehaviour
     public bool WasHit
     {
         get { return _wasHit; }
-        set { _wasHit = true; }
     }
 }

@@ -2771,6 +2771,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.16
       objectReference: {fileID: 0}
+    - target: {fileID: 3913837990517179878, guid: 87c9c578cd3bcb14795c30317026dc76, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5096079620143279289, guid: 87c9c578cd3bcb14795c30317026dc76, type: 3}
       propertyPath: m_Name
       value: pc 1
@@ -2834,6 +2838,10 @@ PrefabInstance:
     - target: {fileID: 5616896685160478211, guid: 87c9c578cd3bcb14795c30317026dc76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308532237852885264, guid: 87c9c578cd3bcb14795c30317026dc76, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87c9c578cd3bcb14795c30317026dc76, type: 3}
@@ -3377,21 +3385,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 961808022390133130, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4231022802989685380, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
       propertyPath: m_Name
       value: Mouse
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231022802989685380, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231022802989685380, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4231022802989685383, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
       propertyPath: m_RootOrder
@@ -3437,38 +3433,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4374323897751936373, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: m_SortingOrder
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374323897751936373, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5221662206655151218, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5221662206655151218, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6320812175594416718, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: _mouseHit
-      value: 
-      objectReference: {fileID: 21300000, guid: 7566f56f0be28d347b521790c7d95598, type: 3}
-    - target: {fileID: 6320812175594416718, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: _mouseNoHit
-      value: 
-      objectReference: {fileID: 21300000, guid: 5e8335826cabeaa4a93a689e779c5011, type: 3}
-    - target: {fileID: 6320812175594416718, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: _damageImage
+      propertyPath: _hitSprite
       value: 
       objectReference: {fileID: 804747684}
-    - target: {fileID: 9117501972447805732, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f1e9758ede7f54aa4e5a6ed4d8026e, type: 3}
 --- !u!1001 &4968391517018801887
