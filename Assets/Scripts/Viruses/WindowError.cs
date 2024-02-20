@@ -12,6 +12,7 @@ public class WindowError : WindowBasic
     {
         Destroy(gameObject);
 
+        // Start gameplay if not already
         if(GameManager.Instance.gameStage != GameManager.GameStage.Gameplay)
             GameManager.Instance.gameStage = GameManager.GameStage.Gameplay;
 

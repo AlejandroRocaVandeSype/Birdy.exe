@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class VirusManager : MonoBehaviour
 {
-    public enum VirusStage { Wait, FirstVirus, LaunchingAntivirus, MultipleErrors, PasswordPhase, 
+    public enum VirusStage { Wait, Intro, FirstVirus, LaunchingAntivirus, MultipleErrors, PasswordPhase, 
         AntivirusStart,DestroyWindows, WaitSeconds, VirusEnd };
-    private VirusStage _stage;
+    private VirusStage _virusStage;
+
+    private GameManager _gameManager = null;
 
     [SerializeField] private GameObject _storyPrefab = null;
     [SerializeField] private GameObject _storySpawnPoint = null;
@@ -40,12 +42,8 @@ public class VirusManager : MonoBehaviour
     private int _currentImageAntivirus = -1;
     private float timePerImage = 0f;
 
-    // Time to the Password Window appear
-    private float _secondsForPassword = 30f;
-    private float _currentSecondsPass = 0f;
-
     private VirusStage _stageToChange = VirusStage.VirusEnd;
-    private float _secondsToWait = 0f;
+    private float _secondsToWait = 0f;                      // Seconds to wait in the WaitSeconds
     private float _currentSeconds = 0f;
 
 
@@ -62,55 +60,99 @@ public class VirusManager : MonoBehaviour
 
     bool _playMusic = true;
 
+    int _passwordVersion = 1;   // User at start
+
     // Start is called before the first frame update
     void Awake()
     {
-        _stage = VirusStage.FirstVirus;
+        _virusStage = VirusStage.Intro;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
+        _gameManager = GameManager.Instance;
+    }
 
-        if(GameManager.Instance.gameStage == GameManager.GameStage.Start)
+    public void StartVirus()
+    {
+        // Pop Up a single window error in the middle of the screen
+        CreateWindow(_windowErrorTemplate, Vector3.zero);
+        _gameManager.gameStage = GameManager.GameStage.WaitToStart;
+        _virusStage = VirusStage.FirstVirus;
+        _secondsToWait = 5f;
+    }
+
+    public void UpdateVirus()
+    {
+        if (_gameManager == null)
+            return;
+
+        if (_gameManager.gameStage == GameManager.GameStage.Gameplay)
         {
-            // Pop Up a single window error in the middle of the screen
-            InstantiateWindow(_windowErrorTemplate,Vector3.zero, Quaternion.identity);
-            GameManager.Instance.gameStage = GameManager.GameStage.WaitToStart;
-            _secondsToWait = 5f;
-        }
-        else if(GameManager.Instance.gameStage == GameManager.GameStage.Gameplay)
-        {
-            if(_playMusic)
+            if (_virusStage != VirusStage.Wait && _virusStage != VirusStage.Intro
+           && _playMusic)
             {
                 SoundManager.Instance.PlaySound("Music", false);
                 _playMusic = false;
             }
 
-           
-            
-                VirusUpdate();
-            
-                    
-        }
-        
-    }
+            switch (_virusStage)
+            {
+                case VirusStage.LaunchingAntivirus:
+                    float totalTime = 30f;
+                    LaunchingAntivirus(totalTime);
+                    break;
 
+                case VirusStage.PasswordPhase:
+                    WindowPasswordDraw(_passwordVersion);
+                    break;
+
+                case VirusStage.AntivirusStart:
+                    StartAntivirus();
+                    break;
+
+                case VirusStage.MultipleErrors:
+                    WindowsErrorFase();
+                    break;
+
+                case VirusStage.DestroyWindows:
+                    DestroyActiveWindows();
+                    break;
+
+                case VirusStage.VirusEnd:
+                    _gameManager.gameStage = GameManager.GameStage.UserWin;
+                    break;
+
+                case VirusStage.WaitSeconds:
+                    WaitSeconds();
+                    break;
+
+            }
+
+
+            if (_virusStage == VirusStage.PasswordPhase || _virusStage == VirusStage.AntivirusStart
+                      || _virusStage == VirusStage.LaunchingAntivirus || _virusStage == VirusStage.Wait)
+            {
+                RandomWindowPopUps();
+            }
+
+        }
+    }
     public void VirusUpdate()
     {
 
         // Always popUp Windows 
-        if ( _stage != VirusStage.FirstVirus && _stage != VirusStage.VirusEnd
-            && _stage != VirusStage.MultipleErrors && _stage != VirusStage.DestroyWindows
-            && _stage != VirusStage.WaitSeconds && _stage != VirusStage.WaitSeconds)
+        if ( _virusStage != VirusStage.FirstVirus && _virusStage != VirusStage.VirusEnd
+            && _virusStage != VirusStage.MultipleErrors && _virusStage != VirusStage.DestroyWindows
+            && _virusStage != VirusStage.WaitSeconds && _virusStage != VirusStage.WaitSeconds)
         {
             RandomWindowPopUps();
         }
 
-        switch (_stage)
+        switch (_virusStage)
         {
             case VirusStage.LaunchingAntivirus:
-                LaunchingAntivirus(_secondsForPassword);
+                //LaunchingAntivirus(_secondsForPassword);
                 break;
             case VirusStage.MultipleErrors:
                 WindowsErrorFase();
@@ -150,7 +192,6 @@ public class VirusManager : MonoBehaviour
     private void LaunchingAntivirus(float totalTime)
     {
         // First image will inmediatly appear
-
         _currentSecAntivirus += Time.deltaTime;
         if(_currentSecAntivirus > timePerImage)
         {
@@ -160,6 +201,7 @@ public class VirusManager : MonoBehaviour
             int previousImag = _currentImageAntivirus - 1;
             if (previousImag >= 0)
             {
+                // Stop showing previous one
                 _antivirusLaunchingImgs[previousImag].SetActive(false);
             }
 
@@ -169,18 +211,18 @@ public class VirusManager : MonoBehaviour
             }
             else
             {
-                _stage = VirusStage.PasswordPhase;  // Show password
+                _virusStage = VirusStage.PasswordPhase;  // Show password
             }
 
         }
 
+        // Time each image will be shown based on the available total time
         timePerImage = totalTime / _antivirusLaunchingImgs.Count - 1;
     }
 
     private void StartAntivirus()
     {
         DestroyActiveWindows();
-
 
         _currentSecondsAntivirus += Time.deltaTime;
         if(_currentSecondsAntivirus > _antivirusMaxSeconds)
@@ -198,7 +240,7 @@ public class VirusManager : MonoBehaviour
                         _antivirusImages[3].SetActive(false);
                         _antivirusImages[4].SetActive(false);
                         _antivirusImages[0].SetActive(true);
-                        _stage = VirusStage.WaitSeconds;
+                        _virusStage = VirusStage.WaitSeconds;
                         _stageToChange = VirusStage.MultipleErrors;
                         _secondsToWait = 3f;
                         _firstTimeAntivirus = false;
@@ -215,7 +257,7 @@ public class VirusManager : MonoBehaviour
                             _antivirusImages[index].SetActive(false);
                         }
 
-                        _stage = VirusStage.WaitSeconds;
+                        _virusStage = VirusStage.WaitSeconds;
                         _stageToChange = VirusStage.VirusEnd;
                         _secondsToWait = 3f;
                     }
@@ -238,7 +280,7 @@ public class VirusManager : MonoBehaviour
         _currentSeconds += Time.deltaTime;
         if(_currentSeconds > _secondsToWait)
         {
-            _stage = _stageToChange;
+            _virusStage = _stageToChange;
             _currentSeconds = 0;
         }
     }
@@ -252,14 +294,14 @@ public class VirusManager : MonoBehaviour
             {  
                if(_errorWindowsCount == 3 && _isDone == false)
                {
-                   InstantiateWindow(_windowErrorTemplate, _firstWindowPos[_errorWindowsCount].transform.position, _firstWindowPos[_errorWindowsCount].transform.rotation);
+                    CreateWindow(_windowErrorTemplate, _firstWindowPos[_errorWindowsCount].transform.position);
                     _errorWindowsCount--; // To avoid array out of bounds for the windowPopUps
                     _isDone = true;
                 }
                else
                {
-                    
-                   InstantiateWindow(_windowPopUps[_errorWindowsCount], _firstWindowPos[_windowPopUpCount].transform.position, _firstWindowPos[_windowPopUpCount].transform.rotation);
+
+                    CreateWindow(_windowPopUps[_errorWindowsCount], _firstWindowPos[_windowPopUpCount].transform.position);
                }
                             
                 _fastWindowPopUps = 0;
@@ -269,9 +311,8 @@ public class VirusManager : MonoBehaviour
             
             if (_errorWindowsCount >= MAX_ERRORS)
             {
-                WindowPasswordDraw(2);
-                _stage = VirusStage.WaitSeconds;
-                _stageToChange = VirusStage.Wait;
+                _virusStage = VirusStage.WaitSeconds;
+                _stageToChange = VirusStage.PasswordPhase;
                 _secondsToWait = 3f;
             }                                             
         }
@@ -284,7 +325,7 @@ public class VirusManager : MonoBehaviour
         {
             if (_maxWindowPopUp == 0f)
             {
-                InstantiateWindow(_storyPrefab, _storySpawnPoint.transform.position, Quaternion.identity);
+                CreateWindow(_storyPrefab, _storySpawnPoint.transform.position);
                 _maxWindowPopUp = 8f;   // After first window appears, the next ones will appear after short times
             }
             else
@@ -293,7 +334,7 @@ public class VirusManager : MonoBehaviour
                 GameObject windowToPopUp = _windowPopUps[indexWindow];
                 int indexPosition = Random.Range(0, _windowPositions.Count - 1);
                 GameObject position = _windowPositions[indexPosition];
-                InstantiateWindow(windowToPopUp, position.transform.position, position.transform.rotation);
+                CreateWindow(windowToPopUp, position.transform.position);
                 _windowPopUpSeconds = 0;
             }
                
@@ -304,14 +345,16 @@ public class VirusManager : MonoBehaviour
     {
         if(_windowPasswordTemplateUser != null)
         {
-            if(version == 1)
+            if(version == 1)  // User password
             {
-                InstantiateWindow(_windowPasswordTemplateUser, Vector3.zero, Quaternion.identity);
-                _stage = VirusStage.Wait;
+                CreateWindow(_windowPasswordTemplateUser, Vector3.zero);
+                _virusStage = VirusStage.Wait;
+                _passwordVersion++;
             }
-            else
+            else  // Admin password
             {
-                InstantiateWindow(_windowPasswordTemplateAdmin, Vector3.zero, Quaternion.identity);
+                CreateWindow(_windowPasswordTemplateAdmin, Vector3.zero);
+                _virusStage = VirusStage.Wait;
             }
            
         }
@@ -319,9 +362,9 @@ public class VirusManager : MonoBehaviour
     }
 
 
-    private void InstantiateWindow(GameObject windowTemplate, Vector3 position, Quaternion rotation)
+    private void CreateWindow(GameObject windowTemplate, Vector3 position)
     {
-        _windowsInGame.Add(Instantiate(windowTemplate, position, rotation));
+        _windowsInGame.Add(Instantiate(windowTemplate, position, Quaternion.identity));
     }
 
 
@@ -348,7 +391,7 @@ public class VirusManager : MonoBehaviour
                     {
                         if(_doOnce == false)
                         {
-                            _stage = VirusStage.FirstVirus;
+                            _virusStage = VirusStage.FirstVirus;
 
                             GameManager.Instance.SpawnManager.KillAll();
                             SoundManager.Instance.StopSound("Music");
@@ -358,7 +401,6 @@ public class VirusManager : MonoBehaviour
                             _doOnce = true;
                         }
                        
-                        //GameManager.Instance.gameStage = GameManager.GameStage.WinScreen;
                     }
                 }
             }
@@ -372,7 +414,6 @@ public class VirusManager : MonoBehaviour
         _secondsDestroyWindows += Time.deltaTime;
         if (_secondsDestroyWindows > _maxSecondsDestroyWindows)
         {
-            int count = 0;
             for (int index = 0; index < _windowsInGame.Count; index++)
             {
                 if (_windowsInGame[index] != null)
@@ -381,34 +422,22 @@ public class VirusManager : MonoBehaviour
                     _windowsInGame[index] = null;
                     break;
                 }
-                else
-                {
-                    count++;
-                    if (count == _windowsInGame.Count)
-                    {
-                        //_stage = VirusStage.WaitSeconds;
-                        //_stageToChange = VirusStage.MultipleErrors;
-                        //_secondsToWait = 2f;
-                    }
-                }
             }
             _secondsDestroyWindows = 0;
         }
     }
 
-
     public VirusStage Stage
     {
-        get { return _stage; }
-        set { _stage = value; }
+        get { return _virusStage; }
+        set { _virusStage = value; }
     }
-
 
     public void PlayerHit()
     {
-        if(_stage == VirusStage.FirstVirus)
+        if(_virusStage == VirusStage.FirstVirus)
         {
-            _stage = VirusStage.LaunchingAntivirus;
+            _virusStage = VirusStage.LaunchingAntivirus;
         }
     }
 

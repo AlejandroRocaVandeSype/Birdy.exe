@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MouseFollow _mouse = null;
     [SerializeField] private GameObject _spawnPosition;
 
-    public enum GameStage { Menu, Start, Gameplay, WaitToStart, GameOver, Wait, UserWin, EndScreen }
+    public enum GameStage { Intro, Gameplay, WaitToStart, GameOver, Wait, UserWin, EndScreen }
     private GameStage _gameStage;
     private GameStage _previousStage;   // When pause remember in which stage it was
     private GameObject _endScreenG0;
@@ -68,13 +68,23 @@ public class GameManager : MonoBehaviour
 
         _spawnManager = GetComponent<SpawnManager>();
         _virusManager = GetComponent<VirusManager>();
-        _gameStage = GameStage.Start;
+        _gameStage = GameStage.Intro;
     }
 
     public void Update()
     {
+        if (_virusManager == null || _spawnManager == null)
+            return;
+
+
         switch (_gameStage)
         {
+            case GameStage.Intro:
+                _virusManager.StartVirus();
+                break;
+            case GameStage.Gameplay:
+                _virusManager.UpdateVirus();
+                break;
             case GameStage.GameOver:
                 {
                     LoadGameOverScreen();
@@ -90,7 +100,7 @@ public class GameManager : MonoBehaviour
                 }
             case GameStage.EndScreen:
                 {
-                    if(_endScreenG0 == null)
+                    if(_endScreenG0 == null)  // Save it so we can delete it in case is Pause game
                         _endScreenG0 = Instantiate(_endScreenImg, Vector3.zero, Quaternion.identity);                  
                     break;
                 }

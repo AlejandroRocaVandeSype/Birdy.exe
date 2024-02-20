@@ -29,8 +29,8 @@ public class VirtusBehaviour : MonoBehaviour
 
         _startSpeed = _agent.speed;
         _startAccel = _agent.acceleration;
-        _maxSpeed = 20f;
-        _maxAccel = 100f;
+        _maxSpeed = 200f;
+        _maxAccel = 1000f;
 
     }
 

@@ -33,7 +33,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.gameStage != GameManager.GameStage.Start &&
+        if(GameManager.Instance.gameStage != GameManager.GameStage.Intro &&
             GameManager.Instance.gameStage != GameManager.GameStage.WaitToStart)
         {
             // Remove any objects that are null
