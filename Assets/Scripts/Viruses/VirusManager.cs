@@ -354,6 +354,7 @@ public class VirusManager : MonoBehaviour
                             SoundManager.Instance.StopSound("Music");
                             SoundManager.Instance.PlaySound("Victory", true);
                             Instantiate(_deathAnimationTemplate, Vector3.zero, Quaternion.identity);
+                            _antivirusImages[_antivirusImages.Count - 1].SetActive(false);
                             _doOnce = true;
                         }
                        

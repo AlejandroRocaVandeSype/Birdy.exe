@@ -4,6 +4,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class WindowBasic : MonoBehaviour, IDragHandler
 {
     [SerializeField] protected GameObject _base;

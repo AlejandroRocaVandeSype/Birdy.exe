@@ -1284,7 +1284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 888487332}
-  _endingScreen: {fileID: 310025365}
+  _gameOverImage: {fileID: 310025365}
+  _endScreenImg: {fileID: 4843888773323055022, guid: d2cf79e3b0e4e604f80fea006a44b42b, type: 3}
   _mouse: {fileID: 865448113}
   _spawnPosition: {fileID: 1480677923}
 --- !u!4 &688727503
@@ -3446,6 +3447,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 52213385, guid: 16ba87a32bc1f5743a06d4a60bb8963d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 310025365, guid: 16ba87a32bc1f5743a06d4a60bb8963d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1560664416817164295, guid: 16ba87a32bc1f5743a06d4a60bb8963d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

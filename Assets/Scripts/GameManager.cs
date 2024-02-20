@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     // SINGLETON CLASS. IT WILL EXIST BETWEEN SCNENES
@@ -37,20 +38,20 @@ public class GameManager : MonoBehaviour
     private SpawnManager _spawnManager = null;
     private VirusManager _virusManager = null;
     [SerializeField] private HealthBar _healthBar = null;
-
-    [SerializeField] private GameObject _endingScreen = null;
-
+    [SerializeField] private GameObject _gameOverImage = null;
+    [SerializeField] private GameObject _endScreenImg = null;
     [SerializeField] private MouseFollow _mouse = null;
-
     [SerializeField] private GameObject _spawnPosition;
 
-    public enum GameStage { Menu, Start, Gameplay, WaitToStart, GameOver, Wait, UserWin, WinScreen }
+    public enum GameStage { Menu, Start, Gameplay, WaitToStart, GameOver, Wait, UserWin, EndScreen }
     private GameStage _gameStage;
+    private GameStage _previousStage;   // When pause remember in which stage it was
+    private GameObject _endScreenG0;
 
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         if (m_Instance == null)
         {
@@ -72,21 +73,72 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if(_gameStage == GameStage.GameOver)
+        switch (_gameStage)
         {
-            LoadGameOverScreen();
-            _gameStage = GameStage.Wait;
+            case GameStage.GameOver:
+                {
+                    LoadGameOverScreen();
+                    StartCoroutine(WaitSeconds(5f));
+                    break;
+                }
+
+            case GameStage.UserWin:
+                {
+                    _virusManager.UserWin();
+                    StartCoroutine(WaitSeconds(5f));
+                    break;
+                }
+            case GameStage.EndScreen:
+                {
+                    if(_endScreenG0 == null)
+                        _endScreenG0 = Instantiate(_endScreenImg, Vector3.zero, Quaternion.identity);                  
+                    break;
+                }
         }
 
-        if(_gameStage == GameStage.UserWin)
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {            
+            PauseGame();
+        }
+    }
+
+    private void PauseGame()
+    {
+        if (_gameStage != GameStage.EndScreen)
         {
-            _virusManager.UserWin();
+            _previousStage = _gameStage;
+            _gameStage = GameStage.EndScreen;
+        }
+        else
+        {
+            if (_endScreenG0 != null)
+                Destroy(_endScreenG0);
+
+            // Go back to the stage the player was
+            _gameStage = _previousStage;
         }
     }
 
     private void LoadGameOverScreen()
     {
-        _endingScreen.SetActive(true);
+        _gameOverImage.SetActive(true);
+    }
+
+    private IEnumerator WaitSeconds(float amount)
+    {
+        yield return new WaitForSeconds(amount);
+        _gameStage = GameStage.EndScreen;
+    }
+
+    public void CloseGame()
+    {
+        // Works in build but not on editor
+        Application.Quit();
+    }
+
+    public void RestartGame(string sceneToRestart)
+    {
+        SceneManager.LoadScene(sceneToRestart);
     }
 
     public SpawnManager SpawnManager
@@ -103,7 +155,6 @@ public class GameManager : MonoBehaviour
     {
         get { return _healthBar; }
     }
-
 
     public GameStage gameStage
     {
